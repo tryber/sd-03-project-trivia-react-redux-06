@@ -1,0 +1,13 @@
+.questions-container {
+  display: flex;
+
+}
+
+.questions-header {
+
+}
+
+.answers-buttons {
+  display: flex;
+  flex-direction: column;
+}
