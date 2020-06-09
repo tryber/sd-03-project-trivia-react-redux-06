@@ -1,5 +1,6 @@
 import React from 'react';
 import './ShuffledButtons.css';
+import questions from '../dataTest';
 
 class ShuffledButtons extends React.Component {
   constructor(props) {
@@ -8,43 +9,43 @@ class ShuffledButtons extends React.Component {
       disabledBtn: false,
       correctAnswerClass: '',
       wrongAnswerClass: '',
-      answersArray: [],
+      allAnswers: [],
     }
   }
 
-  checkAnswer = (stringToTest) => {
-    const { question } = this.props;
+  checkAnswer = (stringToTest, objQuestion) => {
     this.setState({
       correctAnswerClass: 'correct-answer',
       wrongAnswerClass: 'wrong-answer',
       disabledBtn: true,
+      answerChoosed: true,
     });
-    if (stringToTest === question.correct_answer) return console.log(stringToTest)
+    if (stringToTest === objQuestion.correct_answer) return console.log(stringToTest)
     return console.log('wrooong')
   }
   
   arrWithAllButtons = (objQuestion) => {
-    const { incorrect_answers } = objQuestion;
+    const { incorrect_answers, correct_answer } = objQuestion;
     const { disabledBtn, correctAnswerClass, wrongAnswerClass } = this.state;
 
     const incorrectAnswersArr = incorrect_answers.map((e, index) => 
       (<button
         className={wrongAnswerClass}
         disabled={disabledBtn}
-        onClick={() => this.checkAnswer(e)}
+        onClick={() => this.checkAnswer(e, objQuestion)}
         data-testid={`wrong-answer-${index}`}>
           {e}
       </button>));
   
     const allAnswers = [
-    <button
-      className={correctAnswerClass}
-      disabled={disabledBtn}
-      onClick={() => this.checkAnswer(objQuestion.correct_answer)}
-      data-testid="correct-answer">
-        {objQuestion.correct_answer}
-    </button>,
-    ...incorrectAnswersArr,
+      <button
+        className={correctAnswerClass}
+        disabled={disabledBtn}
+        onClick={() => this.checkAnswer(correct_answer, objQuestion)}
+        data-testid="correct-answer">
+          {correct_answer}
+      </button>,
+      ...incorrectAnswersArr,
     ];
     return allAnswers;
   }
@@ -57,7 +58,6 @@ class ShuffledButtons extends React.Component {
     while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-  
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
@@ -65,34 +65,25 @@ class ShuffledButtons extends React.Component {
     return array;
   }
 
-  componentDidMount() {
-    const { question } = this.props;
-    const kkk = this.shuffleAnswers(this.arrWithAllButtons(question))
-    this.setState({ answersArray: kkk })
-  }
-
-  componentDidUpdate(_, prevState) {
-    if (this.state.answersArray !== prevState.answersArray) {
-      const { question } = this.props;
-      const kkk = this.shuffleAnswers(this.arrWithAllButtons(question))
-      this.setState({ answersArray: kkk })
-    }
+  componentWillMount() {
+    const { results } = questions;
+    console.log(results)
+    const allAnswersArr = results.map((question) => 
+      this.shuffleAnswers(this.arrWithAllButtons(question)));
+    this.setState({ allAnswers: allAnswersArr });
+    console.log()
   }
 
   render() {
-    const { question } = this.props;
-    const { answersArray } = this.state;
-    // console.log(question)
-    return (
-      <div>
-        {/* {this.shuffleAnswers(this.arrWithAllButtons(question)).map((e) =>
-          (<div key={e.props.children}>{e}</div>))
-        } */}
-        {answersArray.map((e) =>
-          (<div key={e.props.children}>{e}</div>))
-        }
-      </div>
-    )
+    const { questionIndex } = this.props;
+    const { allAnswers } = this.state;
+      return (
+        <div>
+          {allAnswers[questionIndex].map((button) =>
+            (<div key={button.props.children}>{button}</div>))
+          }
+        </div>
+      )
   }
 }
 
