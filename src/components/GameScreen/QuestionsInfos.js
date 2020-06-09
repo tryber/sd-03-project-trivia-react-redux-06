@@ -8,14 +8,6 @@ import ShuffledButtons from './ShuffledButtons';
 class QuestionsInfos extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      questionIndex: 0,
-      disabledBtn: false,
-      correctAnswerClass: '',
-      wrongAnswerClass: '',
-      answerChoosed: false,
-      allAnswers: [],
-    }
     this.nextQuestion = this.nextQuestion.bind(this);
   }
 
@@ -26,8 +18,8 @@ class QuestionsInfos extends React.Component {
   }
 
   render() {
-    const { setIndex } = this.props;
-    const { questionIndex } = this.state;
+    const { setNextQuestion, questionIndex } = this.props;
+    console.log(this.props);
     const { results } = questions;
     const question = results[questionIndex];
     return (
@@ -39,7 +31,7 @@ class QuestionsInfos extends React.Component {
           </div>
           <ShuffledButtons />
         </div>
-        <button type="button" onClick={setIndex}>Próxima</button>
+        <button type="button" onClick={setNextQuestion}>Próxima</button>
       </section>
     )
   }
@@ -50,7 +42,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setIndex: () => dispatch(newQuestionAction()),
+  setNextQuestion: () => dispatch(newQuestionAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionsInfos);

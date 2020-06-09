@@ -1,6 +1,5 @@
-export const INDEX_ADD = 'INDEX_ADD';
+export const NEXT_QUESTION = 'NEXT_QUESTION';
 
-export const newQuestionAction = (index) => ({
-  type: INDEX_ADD,
-  index,
+export const newQuestionAction = () => ({
+  type: NEXT_QUESTION,
 })
