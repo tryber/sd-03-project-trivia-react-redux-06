@@ -6,6 +6,7 @@ class ShuffledButtons extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      questionIndex: 0,
       disabledBtn: false,
       correctAnswerClass: '',
       wrongAnswerClass: '',
@@ -18,34 +19,18 @@ class ShuffledButtons extends React.Component {
       correctAnswerClass: 'correct-answer',
       wrongAnswerClass: 'wrong-answer',
       disabledBtn: true,
-      answerChoosed: true,
     });
-    if (stringToTest === objQuestion.correct_answer) return console.log(stringToTest)
-    return console.log('wrooong')
+    // if (stringToTest === objQuestion.correct_answer) return console.log(stringToTest);
+    // return console.log('wrooong');
   }
   
   arrWithAllButtons = (objQuestion) => {
     const { incorrect_answers, correct_answer } = objQuestion;
     const { disabledBtn, correctAnswerClass, wrongAnswerClass } = this.state;
-
-    const incorrectAnswersArr = incorrect_answers.map((e, index) => 
-      (<button
-        className={wrongAnswerClass}
-        disabled={disabledBtn}
-        onClick={() => this.checkAnswer(e, objQuestion)}
-        data-testid={`wrong-answer-${index}`}>
-          {e}
-      </button>));
   
     const allAnswers = [
-      <button
-        className={correctAnswerClass}
-        disabled={disabledBtn}
-        onClick={() => this.checkAnswer(correct_answer, objQuestion)}
-        data-testid="correct-answer">
-          {correct_answer}
-      </button>,
-      ...incorrectAnswersArr,
+      correct_answer,
+      ...incorrect_answers,
     ];
     return allAnswers;
   }
@@ -65,25 +50,33 @@ class ShuffledButtons extends React.Component {
     return array;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { results } = questions;
-    console.log(results)
     const allAnswersArr = results.map((question) => 
       this.shuffleAnswers(this.arrWithAllButtons(question)));
     this.setState({ allAnswers: allAnswersArr });
-    console.log()
+  }
+
+  shouldShowAnswers() {
+    return this.state.allAnswers.length > 0
   }
 
   render() {
-    const { questionIndex } = this.props;
-    const { allAnswers } = this.state;
-      return (
-        <div>
-          {allAnswers[questionIndex].map((button) =>
-            (<div key={button.props.children}>{button}</div>))
-          }
+    const { results } = questions;
+    const { allAnswers, correctAnswerClass, wrongAnswerClass, questionIndex } = this.state;
+    if (!this.shouldShowAnswers()) return null
+    return (
+      <div>
+        <div className="answers-buttons">
+          {allAnswers[questionIndex].map((button) => {
+            if (button === results[questionIndex].correct_answer) {
+              return <button className={correctAnswerClass} onClick={() => this.checkAnswer(button )} key={button}>{button}</button>
+            }
+            return <button className={wrongAnswerClass} onClick={() => this.checkAnswer(button )} key={button}>{button}</button>
+          })}
         </div>
-      )
+      </div>
+    )
   }
 }
 

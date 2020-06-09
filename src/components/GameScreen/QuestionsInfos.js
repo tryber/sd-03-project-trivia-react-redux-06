@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { newQuestionAction } from '../../actions/newQuestionAction'
 import './QuestionsInfos.css';
 import questions from '../dataTest';
 import ShuffledButtons from './ShuffledButtons';
@@ -23,68 +25,9 @@ class QuestionsInfos extends React.Component {
     }))
   }
 
-  // checkAnswer = (stringToTest, objQuestion) => {
-  //   this.setState({
-  //     correctAnswerClass: 'correct-answer',
-  //     wrongAnswerClass: 'wrong-answer',
-  //     disabledBtn: true,
-  //     answerChoosed: true,
-  //   });
-  //   if (stringToTest === objQuestion.correct_answer) return console.log(stringToTest)
-  //   return console.log('wrooong')
-  // }
-  
-  // arrWithAllButtons = (objQuestion) => {
-  //   const { incorrect_answers, correct_answer } = objQuestion;
-  //   const { disabledBtn, correctAnswerClass, wrongAnswerClass } = this.state;
-
-  //   const incorrectAnswersArr = incorrect_answers.map((e, index) => 
-  //     (<button
-  //       className={wrongAnswerClass}
-  //       disabled={disabledBtn}
-  //       onClick={() => this.checkAnswer(e, objQuestion)}
-  //       data-testid={`wrong-answer-${index}`}>
-  //         {e}
-  //     </button>));
-  
-  //   const allAnswers = [
-  //     <button
-  //       className={correctAnswerClass}
-  //       disabled={disabledBtn}
-  //       onClick={() => this.checkAnswer(correct_answer, objQuestion)}
-  //       data-testid="correct-answer">
-  //         {correct_answer}
-  //     </button>,
-  //     ...incorrectAnswersArr,
-  //   ];
-  //   return allAnswers;
-  // }
-  
-  // shuffleAnswers = (array) => {
-  //   let currentIndex = array.length;
-  //   let temporaryValue = [];
-  //   let randomIndex;
-  
-  //   while (currentIndex !== 0) {
-  //     randomIndex = Math.floor(Math.random() * currentIndex);
-  //     currentIndex -= 1;
-  //     temporaryValue = array[currentIndex];
-  //     array[currentIndex] = array[randomIndex];
-  //     array[randomIndex] = temporaryValue;
-  //   }
-  //   return array;
-  // }
-
-  // componentWillMount() {
-  //   const { results } = questions;
-  //   console.log(results)
-  //   const allAnswersArr = results.map((question) => 
-  //     this.shuffleAnswers(this.arrWithAllButtons(question)));
-  //   this.setState({ allAnswers: allAnswersArr });
-  // }
-
   render() {
-    const { questionIndex, allAnswers } = this.state;
+    const { setIndex } = this.props;
+    const { questionIndex } = this.state;
     const { results } = questions;
     const question = results[questionIndex];
     return (
@@ -94,16 +37,20 @@ class QuestionsInfos extends React.Component {
             <span data-testid="question-category">{question.category}</span>
             <p data-testid="question-text">{question.question}</p>
           </div>
-          <div className="answers-buttons">
-            <ShuffledButtons questionIndex={questionIndex} />
-          </div>
+          <ShuffledButtons />
         </div>
-        <button type="button" onClick={this.nextQuestion}>Próxima</button>
+        <button type="button" onClick={setIndex}>Próxima</button>
       </section>
     )
   }
 }
 
-export default QuestionsInfos;
+const mapStateToProps = (state) => ({
+  questionIndex: state.questionsDataReducer.index,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  setIndex: () => dispatch(newQuestionAction()),
+});
 
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionsInfos);
