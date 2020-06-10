@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { newQuestionAction } from '../../actions/newQuestionAction'
+import { newQuestionAction } from '../../actions/newQuestionAction';
 import './QuestionsInfos.css';
 import questions from '../dataTest';
 import ShuffledButtons from './ShuffledButtons';
 
 class QuestionsInfos extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.nextQuestion = this.nextQuestion.bind(this);
   }
@@ -14,7 +14,7 @@ class QuestionsInfos extends React.Component {
   nextQuestion() {
     this.setState((state) => ({
       questionIndex: state.questionIndex + 1,
-    }))
+    }));
   }
 
   render() {
@@ -33,7 +33,7 @@ class QuestionsInfos extends React.Component {
         </div>
         <button type="button" onClick={setNextQuestion}>Próxima</button>
       </section>
-    )
+    );
   }
 }
 
