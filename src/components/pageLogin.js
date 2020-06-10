@@ -29,11 +29,7 @@ class pageLogin extends React.Component {
 
   renderLogin() {
     return (
-      <div style={{
-        width: 400,
-        margin: '40px auto',
-      }}
-      >
+      <div>
         <label>E-mail do Gravatar:</label>
         <input
           plasceholder="Email Gravatar"
@@ -61,12 +57,8 @@ class pageLogin extends React.Component {
       disabled = true;
     }
     return (
-      <div style={{
-        width: 400,
-        margin: '40px auto',
-      }}
-      >
-        <Link to="/game">
+      <div>
+        <Link to=" ">
           <button
             type="button"
             data-testid="btn-play"
