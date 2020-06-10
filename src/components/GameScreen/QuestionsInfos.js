@@ -1,11 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { newQuestionAction } from '../../actions/newQuestionAction';
 import { timerCountAction } from '../../actions/timerCountAction';
 import { timeOutAction } from '../../actions/timeOutAction';
 import { checkAnswerAction } from '../../actions/checkAnswerAction';
 import './QuestionsInfos.css';
-// import questions from '../dataTest';
 import ShuffledButtons from './ShuffledButtons';
 import NextButtonControl from './NextButtonControl';
 
@@ -83,3 +83,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionsInfos);
+
+QuestionsInfos.propTypes = {
+  questionIndex: PropTypes.number.isRequired,
+  difficulty: PropTypes.number.isRequired,
+  questionsArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  timer: PropTypes.number.isRequired,
+  timeOut: PropTypes.func.isRequired,
+  timerCount: PropTypes.func.isRequired,
+  checkAnswer: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { newQuestionAction } from '../../actions/newQuestionAction';
 
@@ -30,3 +31,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NextButtonControl);
+
+NextButtonControl.propTypes = {
+  setNextQuestion: PropTypes.func.isRequired,
+  timerFunction: PropTypes.func.isRequired,
+  wrongAnswerClass: PropTypes.string,
+};
+
+NextButtonControl.defaultProps = {
+  wrongAnswerClass: '',
+};

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './ShuffledButtons.css';
+import PropTypes from 'prop-types';
 
 const arrWithAllButtons = (objQuestion) => {
   const allAnswers = [objQuestion.correct_answer, ...objQuestion.incorrect_answers];
@@ -43,8 +44,8 @@ class ShuffledButtons extends React.Component {
   }
 
   render() {
-    const { questionsArr } = this.props;
     const {
+      questionsArr,
       questionIndex,
       answerChoosed,
       wrongAnswerClass,
@@ -97,3 +98,17 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(ShuffledButtons);
+
+ShuffledButtons.propTypes = {
+  questionIndex: PropTypes.number.isRequired,
+  answerChoosed: PropTypes.func.isRequired,
+  wrongAnswerClass: PropTypes.string,
+  correctAnswerClass: PropTypes.string,
+  disabledBtn: PropTypes.bool.isRequired,
+  questionsArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+ShuffledButtons.defaultProps = {
+  wrongAnswerClass: '',
+  correctAnswerClass: '',
+};

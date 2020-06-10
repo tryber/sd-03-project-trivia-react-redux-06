@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getApiQuestions } from '../../actions/apiQuestionsAction';
@@ -104,3 +105,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+
+LoginContainer.propTypes = {
+  apiQuestionsDispatch: PropTypes.func.isRequired,
+};
