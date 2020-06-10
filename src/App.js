@@ -1,4 +1,7 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import LoginPage from './components/pageLogin';
+
 import logo from './trivia.png';
 import './App.css';
 
@@ -11,6 +14,13 @@ export default function App() {
           SUA VEZ
         </p>
       </header>
+      <section>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={LoginPage} />
+          </Switch>
+        </BrowserRouter>
+      </section>
     </div>
   );
 }

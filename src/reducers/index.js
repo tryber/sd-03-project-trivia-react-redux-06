@@ -1,5 +1,8 @@
-// import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
+import gravatarReducer from './gravatarReducer';
 
-// const rootReducer = combineReducers({  });
+const rootReducer = combineReducers({
+  gravatarReducer,
+});
 
-// export default rootReducer;
+export default rootReducer;
