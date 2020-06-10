@@ -30,13 +30,13 @@ class pageLogin extends React.Component {
   renderLogin() {
     return (
       <div>
-        <label htmlfor="email">E-mail do Gravatar:</label>
+        <label htmlFor="email">E-mail do Gravatar:</label>
         <input
           plasceholder="Email Gravatar"
           type="email"
           data-testid="input-player-name"
           onChange={(e) => this.handleChange(e)}
-          name="username"
+          name="email"
         />
         <label htmlFor="name">Nome do Jogador:</label>
         <input
