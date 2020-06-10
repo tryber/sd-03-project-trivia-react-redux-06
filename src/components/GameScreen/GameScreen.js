@@ -9,7 +9,7 @@ class GameScreen extends React.Component {
         <Header />
         <QuestionsInfos />
       </div>
-    )
+    );
   }
 }
 

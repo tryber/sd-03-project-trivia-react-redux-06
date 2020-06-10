@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-class pageLogin extends React.Component {
+class LoginContainer extends React.Component {
   static renderSettings() {
     return (
       <div>
         <Link to=" ">
-            Settings
+          Settings
         </Link>
       </div>
     );
@@ -74,11 +74,9 @@ class pageLogin extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          {pageLogin.renderSettings()}
-        </div>
         {this.renderLogin()}
         {this.renderJogar()}
+        {LoginContainer.renderSettings()}
       </div>
     );
   }
@@ -92,4 +90,4 @@ const mapStateToProps = ({
 });
 
 
-export default connect(mapStateToProps)(pageLogin);
+export default connect(mapStateToProps)(LoginContainer);
