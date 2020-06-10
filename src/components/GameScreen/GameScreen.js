@@ -1,7 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Header from './Header';
 import QuestionsInfos from './QuestionsInfos';
-import { connect } from 'react-redux';
 
 class GameScreen extends React.Component {
   render() {

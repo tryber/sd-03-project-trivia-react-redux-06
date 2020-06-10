@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './ShuffledButtons.css';
-import questions from '../dataTest';
 
 const arrWithAllButtons = (objQuestion) => {
   const allAnswers = [objQuestion.correct_answer, ...objQuestion.incorrect_answers];
@@ -32,8 +31,9 @@ class ShuffledButtons extends React.Component {
   }
 
   componentDidMount() {
-    const { results } = questions;
-    const allAnswersArr = results.map((question) => shuffleAnswers(arrWithAllButtons(question)));
+    const { questionsArr } = this.props;
+    const allAnswersArr = questionsArr
+      .map((question) => shuffleAnswers(arrWithAllButtons(question)));
     this.setState({ allAnswers: allAnswersArr });
   }
 
@@ -43,7 +43,7 @@ class ShuffledButtons extends React.Component {
   }
 
   render() {
-    const { results } = questions;
+    const { questionsArr } = this.props;
     const {
       questionIndex,
       answerChoosed,
@@ -56,7 +56,7 @@ class ShuffledButtons extends React.Component {
     return (
       <div className="answers-buttons">
         {allAnswers[questionIndex].map((button) => {
-          if (button === results[questionIndex].correct_answer) {
+          if (button === questionsArr[questionIndex].correct_answer) {
             return (
               <button
                 type="button"
@@ -90,6 +90,7 @@ class ShuffledButtons extends React.Component {
 
 const mapStateToProps = (state) => ({
   questionIndex: state.questionsDataReducer.index,
+  questionsArr: state.apiQuestionsReducer.questions.results,
   wrongAnswerClass: state.questionsDataReducer.wrongAnswerClass,
   correctAnswerClass: state.questionsDataReducer.correctAnswerClass,
   disabledBtn: state.questionsDataReducer.disabledBtn,
