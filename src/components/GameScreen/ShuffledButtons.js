@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { checkAnswerAction } from '../../actions/checkAnswerAction';
 import './ShuffledButtons.css';
 import questions from '../dataTest';
 
@@ -47,7 +46,7 @@ class ShuffledButtons extends React.Component {
     const { results } = questions;
     const {
       questionIndex,
-      checkAnswer,
+      answerChoosed,
       wrongAnswerClass,
       correctAnswerClass,
       disabledBtn,
@@ -61,9 +60,10 @@ class ShuffledButtons extends React.Component {
             return (
               <button
                 type="button"
+                value={button}
                 disabled={disabledBtn}
                 className={correctAnswerClass}
-                onClick={checkAnswer}
+                onClick={answerChoosed}
                 key={button}
               >
                 {button}
@@ -73,9 +73,10 @@ class ShuffledButtons extends React.Component {
           return (
             <button
               type="button"
+              value={button}
               disabled={disabledBtn}
               className={wrongAnswerClass}
-              onClick={checkAnswer}
+              onClick={answerChoosed}
               key={button}
             >
               {button}
@@ -94,8 +95,4 @@ const mapStateToProps = (state) => ({
   disabledBtn: state.questionsDataReducer.disabledBtn,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  checkAnswer: () => dispatch(checkAnswerAction()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShuffledButtons);
+export default connect(mapStateToProps)(ShuffledButtons);
