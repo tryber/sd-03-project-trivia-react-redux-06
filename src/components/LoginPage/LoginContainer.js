@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getApiQuestions } from '../../actions/apiQuestionsAction';
+import apiTokenRequest from '../../service/apiTokenRequest';
 
 class LoginContainer extends React.Component {
   static renderSettings() {
@@ -20,11 +22,19 @@ class LoginContainer extends React.Component {
       email: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.startGame = this.startGame.bind(this);
   }
 
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+  }
+
+  async startGame() {
+    await apiTokenRequest().then((reponse) => localStorage.setItem('token', reponse.token));
+    const { apiQuestionsDispatch } = this.props;
+    console.log(typeof localStorage.getItem('token'))
+    apiQuestionsDispatch(localStorage.getItem('token'));
   }
 
   renderLogin() {
@@ -58,15 +68,16 @@ class LoginContainer extends React.Component {
     }
     return (
       <div>
-        <Link to=" ">
+        {/* <Link to=" "> */}
           <button
             type="button"
             data-testid="btn-play"
-            disabled={disabled}
+            // disabled={disabled}
+            onClick={this.startGame}
           >
             JOGAR!
           </button>
-        </Link>
+        {/* </Link> */}
       </div>
     );
   }
@@ -82,12 +93,14 @@ class LoginContainer extends React.Component {
   }
 }
 
-const mapStateToProps = ({
-  gravatarReducer: { email, token },
-}) => ({
-  email,
-  token,
+const mapStateToProps = (state) => ({
+  email: state.gravatarReducer.email,
+  token: state.gravatarReducer.token,
+  apiToken: state.apiQuestionsReducer.questions,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  apiQuestionsDispatch: (token) => dispatch(getApiQuestions(token)),
+});
 
-export default connect(mapStateToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
