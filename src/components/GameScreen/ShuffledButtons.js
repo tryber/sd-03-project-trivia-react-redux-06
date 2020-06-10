@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './ShuffledButtons.css';
-import PropTypes from 'prop-types';
 
 const arrWithAllButtons = (objQuestion) => {
   const allAnswers = [objQuestion.correct_answer, ...objQuestion.incorrect_answers];
@@ -12,15 +12,16 @@ const shuffleAnswers = (array) => {
   let currentIndex = array.length;
   let temporaryValue = [];
   let randomIndex;
+  const newArr = [...array];
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+    temporaryValue = newArr[currentIndex];
+    newArr[currentIndex] = newArr[randomIndex];
+    newArr[randomIndex] = temporaryValue;
   }
-  return array;
+  return newArr;
 };
 
 class ShuffledButtons extends React.Component {
