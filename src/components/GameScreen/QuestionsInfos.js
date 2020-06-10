@@ -12,11 +12,19 @@ import NextButtonControl from './NextButtonControl';
 class QuestionsInfos extends React.Component {
   constructor(props) {
     super(props);
-    this.nextQuestion = this.nextQuestion.bind(this);
     this.answerChoosed = this.answerChoosed.bind(this);
+    this.timerFunction = this.timerFunction.bind(this);
   }
 
   componentDidMount() {
+    this.timerFunction();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  timerFunction() {
     this.interval = setInterval(() => {
       const { timerCount, timer, timeOut } = this.props;
 
@@ -29,11 +37,7 @@ class QuestionsInfos extends React.Component {
     }, 1000);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  answerChoosed(event) { 
+  answerChoosed(event) {
     const { timer, difficulty, checkAnswer } = this.props;
     let points = 0;
     if (event.target.value === 'A crowbar') points = 10 + (timer * difficulty);
@@ -41,14 +45,8 @@ class QuestionsInfos extends React.Component {
     return clearInterval(this.interval);
   }
 
-  nextQuestion() {
-    this.setState((state) => ({
-      questionIndex: state.questionIndex + 1,
-    }));
-  }
-
   render() {
-    const { setNextQuestion, questionIndex, timer } = this.props;
+    const { questionIndex, timer } = this.props;
     // console.log(this.props);
     const { results } = questions;
     const question = results[questionIndex];
@@ -61,7 +59,7 @@ class QuestionsInfos extends React.Component {
           </div>
           <ShuffledButtons answerChoosed={this.answerChoosed} />
         </div>
-        <NextButtonControl />
+        <NextButtonControl timerFunction={this.timerFunction} />
         <span>{timer}</span>
       </section>
     );

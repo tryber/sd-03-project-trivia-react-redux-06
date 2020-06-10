@@ -8,7 +8,7 @@ const INITIAL_STATE = {
   correctAnswerClass: '',
   wrongAnswerClass: '',
   disabledBtn: false,
-  timerCount: 5,
+  timerCount: 30,
   points: 0,
   difficulty: 1,
 };
@@ -22,6 +22,7 @@ const questionsDataReducer = (state = INITIAL_STATE, action) => {
         correctAnswerClass: '',
         wrongAnswerClass: '',
         disabledBtn: false,
+        timerCount: 30,
       };
     case CHECKED_ANSWER:
       return {

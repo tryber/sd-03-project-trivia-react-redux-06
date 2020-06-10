@@ -3,15 +3,23 @@ import { connect } from 'react-redux';
 import { newQuestionAction } from '../../actions/newQuestionAction';
 
 const NextButtonControl = (props) => {
-  const { setNextQuestion, wrongAnswerClass } = props;
+  const { setNextQuestion, wrongAnswerClass, timerFunction } = props;
   if (wrongAnswerClass === '') return null;
   return (
     <div>
-      <button data-testid="btn-next" type="button" onClick={setNextQuestion}>Próxima</button>
+      <button
+        data-testid="btn-next"
+        type="button"
+        onClick={() => {
+          setNextQuestion();
+          timerFunction();
+        }}
+      >
+        Próxima
+      </button>
     </div>
   );
 };
-
 
 const mapStateToProps = (state) => ({
   wrongAnswerClass: state.questionsDataReducer.wrongAnswerClass,
