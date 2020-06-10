@@ -30,7 +30,7 @@ class pageLogin extends React.Component {
   renderLogin() {
     return (
       <div>
-        <label>E-mail do Gravatar:</label>
+        <label htmlfor="email">E-mail do Gravatar:</label>
         <input
           plasceholder="Email Gravatar"
           type="email"
@@ -38,7 +38,7 @@ class pageLogin extends React.Component {
           onChange={(e) => this.handleChange(e)}
           name="username"
         />
-        <label>Nome do Jogador:</label>
+        <label htmlFor="name">Nome do Jogador:</label>
         <input
           placeholder="Nome"
           onChange={(e) => this.handleChange(e)}
