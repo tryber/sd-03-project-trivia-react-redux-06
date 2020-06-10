@@ -5,7 +5,7 @@ import { timerCountAction } from '../../actions/timerCountAction';
 import { timeOutAction } from '../../actions/timeOutAction';
 import { checkAnswerAction } from '../../actions/checkAnswerAction';
 import './QuestionsInfos.css';
-import questions from '../dataTest';
+// import questions from '../dataTest';
 import ShuffledButtons from './ShuffledButtons';
 import NextButtonControl from './NextButtonControl';
 
@@ -38,18 +38,19 @@ class QuestionsInfos extends React.Component {
   }
 
   answerChoosed(event) {
-    const { timer, difficulty, checkAnswer } = this.props;
+    const { timer, difficulty, checkAnswer, questionsArr, questionIndex } = this.props;
     let points = 0;
-    if (event.target.value === 'A crowbar') points = 10 + (timer * difficulty);
+    const questionAnswer = questionsArr[questionIndex];
+    if (event.target.value === questionAnswer.correct_answer) points = 10 + (timer * difficulty);
     checkAnswer(points);
     return clearInterval(this.interval);
   }
 
   render() {
-    const { questionIndex, timer } = this.props;
+    const { questionIndex, timer, questionsArr } = this.props;
     // console.log(this.props);
-    const { results } = questions;
-    const question = results[questionIndex];
+    // const { results } = questions;
+    const question = questionsArr[questionIndex];
     return (
       <section>
         <div className="questions-container">
@@ -68,6 +69,7 @@ class QuestionsInfos extends React.Component {
 
 const mapStateToProps = (state) => ({
   questionIndex: state.questionsDataReducer.index,
+  questionsArr: state.apiQuestionsReducer.questions.results,
   timer: state.questionsDataReducer.timerCount,
   wrongAnswerClass: state.questionsDataReducer.wrongAnswerClass,
   difficulty: state.questionsDataReducer.difficulty,

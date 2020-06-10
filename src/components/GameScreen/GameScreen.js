@@ -1,9 +1,12 @@
 import React from 'react';
 import Header from './Header';
 import QuestionsInfos from './QuestionsInfos';
+import { connect } from 'react-redux';
 
 class GameScreen extends React.Component {
   render() {
+    const { questionsArr } = this.props;
+    if (!questionsArr) return <div>Loading...</div>;
     return (
       <div>
         <Header />
@@ -13,4 +16,8 @@ class GameScreen extends React.Component {
   }
 }
 
-export default GameScreen;
+const mapStateToProps = (state) => ({
+  questionsArr: state.apiQuestionsReducer.questions.results,
+});
+
+export default connect(mapStateToProps)(GameScreen);

@@ -68,7 +68,7 @@ class LoginContainer extends React.Component {
     }
     return (
       <div>
-        {/* <Link to=" "> */}
+        <Link to="/game-screen">
           <button
             type="button"
             data-testid="btn-play"
@@ -77,7 +77,7 @@ class LoginContainer extends React.Component {
           >
             JOGAR!
           </button>
-        {/* </Link> */}
+        </Link>
       </div>
     );
   }
