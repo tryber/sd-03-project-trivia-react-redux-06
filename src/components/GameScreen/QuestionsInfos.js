@@ -48,8 +48,6 @@ class QuestionsInfos extends React.Component {
 
   render() {
     const { questionIndex, timer, questionsArr } = this.props;
-    // console.log(this.props);
-    // const { results } = questions;
     const question = questionsArr[questionIndex];
     return (
       <section>

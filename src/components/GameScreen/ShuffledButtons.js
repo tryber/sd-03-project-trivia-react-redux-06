@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { allAnswersAction } from '../../actions/allAnswersAction';
 import './ShuffledButtons.css';
 
 const arrWithAllButtons = (objQuestion) => {
@@ -25,64 +26,50 @@ const shuffleAnswers = (array) => {
 };
 
 class ShuffledButtons extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      allAnswers: [],
-    };
-  }
 
   componentDidMount() {
-    const { questionsArr } = this.props;
+    const { questionsArr, allAnswersDispatch } = this.props;
     const allAnswersArr = questionsArr
       .map((question) => shuffleAnswers(arrWithAllButtons(question)));
-    this.setState({ allAnswers: allAnswersArr });
+    allAnswersDispatch(allAnswersArr);
   }
 
   shouldShowAnswers() {
-    const { allAnswers } = this.state;
+    const { allAnswers } = this.props;
     return allAnswers.length > 0;
+  }
+
+  renderButton(value, className, key) {
+    const { disabledBtn, answerChoosed } = this.props;
+    return (
+      <button
+        type="button"
+        value={value}
+        disabled={disabledBtn}
+        className={className}
+        onClick={answerChoosed}
+        key={key}
+      >
+        {value}
+      </button>
+    );
   }
 
   render() {
     const {
-      questionsArr,
-      questionIndex,
-      answerChoosed,
-      wrongAnswerClass,
-      correctAnswerClass,
-      disabledBtn,
+      questionsArr, questionIndex, wrongAnswerClass, correctAnswerClass, allAnswers
     } = this.props;
-    const { allAnswers } = this.state;
     if (!this.shouldShowAnswers()) return null;
     return (
       <div className="answers-buttons">
         {allAnswers[questionIndex].map((button) => {
           if (button === questionsArr[questionIndex].correct_answer) {
             return (
-              <button
-                type="button"
-                value={button}
-                disabled={disabledBtn}
-                className={correctAnswerClass}
-                onClick={answerChoosed}
-                key={button}
-              >
-                {button}
-              </button>
+              this.renderButton(button, correctAnswerClass, button)
             );
           }
           return (
-            <button
-              type="button"
-              value={button}
-              disabled={disabledBtn}
-              className={wrongAnswerClass}
-              onClick={answerChoosed}
-              key={button}
-            >
-              {button}
-            </button>
+            this.renderButton(button, wrongAnswerClass, button)
           );
         })}
       </div>
@@ -96,17 +83,24 @@ const mapStateToProps = (state) => ({
   wrongAnswerClass: state.questionsDataReducer.wrongAnswerClass,
   correctAnswerClass: state.questionsDataReducer.correctAnswerClass,
   disabledBtn: state.questionsDataReducer.disabledBtn,
+  allAnswers: state.allAnswersReducer.allAnswers,
 });
 
-export default connect(mapStateToProps)(ShuffledButtons);
+const mapDispatchToProps = (dispatch) => ({
+  allAnswersDispatch: (arrayOfAnswers) => dispatch(allAnswersAction(arrayOfAnswers)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShuffledButtons);
 
 ShuffledButtons.propTypes = {
   questionIndex: PropTypes.number.isRequired,
   answerChoosed: PropTypes.func.isRequired,
+  allAnswersDispatch: PropTypes.func.isRequired,
   wrongAnswerClass: PropTypes.string,
   correctAnswerClass: PropTypes.string,
   disabledBtn: PropTypes.bool.isRequired,
   questionsArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  allAnswers: PropTypes.arrayOf(PropTypes.array).isRequired,
 };
 
 ShuffledButtons.defaultProps = {

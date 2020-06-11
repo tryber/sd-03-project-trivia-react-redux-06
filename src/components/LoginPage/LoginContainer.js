@@ -18,10 +18,10 @@ class LoginContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      email: '',
-    };
+    // this.state = {
+    //   username: '',
+    //   email: '',
+    // };
     this.handleChange = this.handleChange.bind(this);
     this.startGame = this.startGame.bind(this);
   }
@@ -34,7 +34,6 @@ class LoginContainer extends React.Component {
   async startGame() {
     await apiTokenRequest().then((reponse) => localStorage.setItem('token', reponse.token));
     const { apiQuestionsDispatch } = this.props;
-    console.log(typeof localStorage.getItem('token'));
     apiQuestionsDispatch(localStorage.getItem('token'));
   }
 
@@ -62,11 +61,11 @@ class LoginContainer extends React.Component {
   }
 
   renderJogar() {
-    const { username, email } = this.state;
-    let disabled = false;
-    if (username === '' || email === '') {
-      disabled = true;
-    }
+    // const { username, email } = this.state;
+    // let disabled = false;
+    // if (username === '' || email === '') {
+    //   disabled = true;
+    // }
     return (
       <div>
         <Link to="/game-screen">

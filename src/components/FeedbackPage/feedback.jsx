@@ -52,19 +52,19 @@ export class Feedback extends Component {
     );
   }
 
-  renderButtons() {
+  static renderButtons() {
     return (
       <div>
         <div>
           {/* <Link to="/ranking"> */}
-            <button className="feedback-button-ranking">VER RANKING</button>
+          <button type="button" className="feedback-button-ranking">VER RANKING</button>
           {/* </Link> */}
         </div>
         <div>
           {/* <Link to="/"> */}
-            <button className="feedback-button-playagain">
-              JOGAR NOVAMENTE
-            </button>
+          <button type="button" className="feedback-button-playagain">
+            JOGAR NOVAMENTE
+          </button>
           {/* </Link> */}
         </div>
       </div>
@@ -97,7 +97,7 @@ export class Feedback extends Component {
         </header>
         <div className="score-container">
           {this.renderFeedbackScreen()}
-          {this.renderButtons()}
+          {Feedback.renderButtons()}
         </div>
       </div>
     );

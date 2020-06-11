@@ -33,10 +33,7 @@ const questionsDataReducer = (state = INITIAL_STATE, action) => {
         points: state.points + action.points,
       };
     case TIMER_COUNT:
-      return {
-        ...state,
-        timerCount: state.timerCount - 1,
-      };
+      return { ...state, timerCount: state.timerCount - 1 };
     case TIME_OUT:
       return {
         ...state,
