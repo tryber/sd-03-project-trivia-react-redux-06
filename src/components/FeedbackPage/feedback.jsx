@@ -4,6 +4,25 @@ import './feedback.style.css';
 // import { connect } from 'react-redux';
 
 export class Feedback extends Component {
+  static renderButtons() {
+    return (
+      <div>
+        <div>
+          {/* <Link to="/ranking"> */}
+          <button type="button" className="feedback-button-ranking">VER RANKING</button>
+          {/* </Link> */}
+        </div>
+        <div>
+          {/* <Link to="/"> */}
+          <button type="button" className="feedback-button-playagain">
+            JOGAR NOVAMENTE
+          </button>
+          {/* </Link> */}
+        </div>
+      </div>
+    );
+  }
+
   static feedbackPos() {
     return (
       <div>
@@ -48,25 +67,6 @@ export class Feedback extends Component {
       <div>
         {correctAnswers <= 3 ? Feedback.feedbackNeg() : Feedback.feedbackPos()}
         {this.renderScore()}
-      </div>
-    );
-  }
-
-  static renderButtons() {
-    return (
-      <div>
-        <div>
-          {/* <Link to="/ranking"> */}
-          <button type="button" className="feedback-button-ranking">VER RANKING</button>
-          {/* </Link> */}
-        </div>
-        <div>
-          {/* <Link to="/"> */}
-          <button type="button" className="feedback-button-playagain">
-            JOGAR NOVAMENTE
-          </button>
-          {/* </Link> */}
-        </div>
       </div>
     );
   }

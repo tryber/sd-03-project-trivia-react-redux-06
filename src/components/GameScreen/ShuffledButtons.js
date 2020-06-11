@@ -57,7 +57,7 @@ class ShuffledButtons extends React.Component {
 
   render() {
     const {
-      questionsArr, questionIndex, wrongAnswerClass, correctAnswerClass, allAnswers
+      questionsArr, questionIndex, wrongAnswerClass, correctAnswerClass, allAnswers,
     } = this.props;
     if (!this.shouldShowAnswers()) return null;
     return (
