@@ -47,7 +47,7 @@ class QuestionsInfos extends React.Component {
     localStorage.setItem('state', JSON.stringify(state));
   }
 
-  answerChoosed(event) {
+  async answerChoosed(event) {
     const {
       timer, difficulty, checkAnswer, questionsArr, questionIndex,
     } = this.props;
@@ -58,7 +58,7 @@ class QuestionsInfos extends React.Component {
       points = 10 + (timer * difficulty);
       assertions = 1;
     }
-    checkAnswer(points, assertions);
+    await checkAnswer(points, assertions);
     this.savingInLocalStorage();
     return clearInterval(this.interval);
   }
