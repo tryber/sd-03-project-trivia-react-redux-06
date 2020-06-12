@@ -7,9 +7,8 @@ const NextButtonControl = (props) => {
   const { setNextQuestion, wrongAnswerClass, timerFunction } = props;
   if (wrongAnswerClass === '') return null;
   return (
-    <div>
+    <div data-testid="btn-next">
       <button
-        data-testid="btn-next"
         type="button"
         onClick={() => {
           setNextQuestion();
