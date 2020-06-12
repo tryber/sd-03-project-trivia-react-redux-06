@@ -37,14 +37,29 @@ class QuestionsInfos extends React.Component {
     }, 1000);
   }
 
+  savingInLocalStorage() {
+    const { assertions, score, name } = this.props;
+    const state = {
+      name,
+      assertions,
+      score,
+    };
+    localStorage.setItem('state', JSON.stringify(state));
+  }
+
   answerChoosed(event) {
     const {
       timer, difficulty, checkAnswer, questionsArr, questionIndex,
     } = this.props;
     let points = 0;
+    let assertions = 0;
     const questionAnswer = questionsArr[questionIndex];
-    if (event.target.value === questionAnswer.correct_answer) points = 10 + (timer * difficulty);
-    checkAnswer(points);
+    if (event.target.value === questionAnswer.correct_answer) {
+      points = 10 + (timer * difficulty);
+      assertions = 1;
+    }
+    checkAnswer(points, assertions);
+    this.savingInLocalStorage();
     return clearInterval(this.interval);
   }
 
@@ -69,6 +84,9 @@ class QuestionsInfos extends React.Component {
 
 const mapStateToProps = (state) => ({
   questionIndex: state.questionsDataReducer.index,
+  name: state.playersInfoReducer.username,
+  score: state.questionsDataReducer.points,
+  assertions: state.questionsDataReducer.assertions,
   questionsArr: state.apiQuestionsReducer.questions.results,
   timer: state.questionsDataReducer.timerCount,
   wrongAnswerClass: state.questionsDataReducer.wrongAnswerClass,
@@ -79,7 +97,7 @@ const mapDispatchToProps = (dispatch) => ({
   setNextQuestion: () => dispatch(newQuestionAction()),
   timerCount: () => dispatch(timerCountAction()),
   timeOut: () => dispatch(timeOutAction()),
-  checkAnswer: (points) => dispatch(checkAnswerAction(points)),
+  checkAnswer: (points, assertions) => dispatch(checkAnswerAction(points, assertions)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionsInfos);
@@ -87,9 +105,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(QuestionsInfos);
 QuestionsInfos.propTypes = {
   questionIndex: PropTypes.number.isRequired,
   difficulty: PropTypes.number.isRequired,
-  questionsArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  questionsArr: PropTypes.arrayOf(PropTypes.object),
   timer: PropTypes.number.isRequired,
   timeOut: PropTypes.func.isRequired,
   timerCount: PropTypes.func.isRequired,
   checkAnswer: PropTypes.func.isRequired,
+  assertions: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+};
+
+QuestionsInfos.defaultProps = {
+  questionsArr: [],
 };

@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   timerCount: 30,
   points: 0,
   difficulty: 1,
+  assertions: 0,
 };
 
 const questionsDataReducer = (state = INITIAL_STATE, action) => {
@@ -31,15 +32,12 @@ const questionsDataReducer = (state = INITIAL_STATE, action) => {
         wrongAnswerClass: 'wrong-answer',
         disabledBtn: true,
         points: state.points + action.points,
+        assertions: state.assertions + action.assertions,
       };
     case TIMER_COUNT:
       return { ...state, timerCount: state.timerCount - 1 };
     case TIME_OUT:
-      return {
-        ...state,
-        disabledBtn: true,
-        points: state.points + 0,
-      };
+      return { ...state, disabledBtn: true, points: state.points + 0 };
     default:
       return state;
   }
