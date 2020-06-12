@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getApiQuestions } from '../../actions/apiQuestionsAction';
+import { playersNameAction } from '../../actions/playersNameAction';
 import apiTokenRequest from '../../service/apiTokenRequest';
 
 class LoginContainer extends React.Component {
@@ -18,10 +19,10 @@ class LoginContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.state = {
-    //   username: '',
-    //   email: '',
-    // };
+    this.state = {
+      username: '',
+      // email: '',
+    };
     this.handleChange = this.handleChange.bind(this);
     this.startGame = this.startGame.bind(this);
   }
@@ -33,7 +34,9 @@ class LoginContainer extends React.Component {
 
   async startGame() {
     await apiTokenRequest().then((reponse) => localStorage.setItem('token', reponse.token));
-    const { apiQuestionsDispatch } = this.props;
+    const { username } = this.state;
+    const { apiQuestionsDispatch, playersNamesDispatch } = this.props;
+    playersNamesDispatch(username);
     apiQuestionsDispatch(localStorage.getItem('token'));
   }
 
@@ -48,11 +51,11 @@ class LoginContainer extends React.Component {
           onChange={(e) => this.handleChange(e)}
           name="email"
         />
-        <label htmlFor="name">Nome do Jogador:</label>
+        <label htmlFor="username">Nome do Jogador:</label>
         <input
           placeholder="Nome"
           onChange={(e) => this.handleChange(e)}
-          name="name"
+          name="username"
           type="text"
           data-testid="input-gravatar-email"
         />
@@ -101,10 +104,12 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   apiQuestionsDispatch: (token) => dispatch(getApiQuestions(token)),
+  playersNamesDispatch: (username) => dispatch(playersNameAction(username)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
 
 LoginContainer.propTypes = {
   apiQuestionsDispatch: PropTypes.func.isRequired,
+  playersNamesDispatch: PropTypes.func.isRequired,
 };

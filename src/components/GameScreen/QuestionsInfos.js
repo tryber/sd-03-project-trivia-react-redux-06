@@ -38,7 +38,9 @@ class QuestionsInfos extends React.Component {
   }
 
   answerChoosed(event) {
-    const { timer, difficulty, checkAnswer, questionsArr, questionIndex } = this.props;
+    const {
+      timer, difficulty, checkAnswer, questionsArr, questionIndex,
+    } = this.props;
     let points = 0;
     const questionAnswer = questionsArr[questionIndex];
     if (event.target.value === questionAnswer.correct_answer) points = 10 + (timer * difficulty);

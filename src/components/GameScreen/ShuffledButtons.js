@@ -39,10 +39,11 @@ class ShuffledButtons extends React.Component {
     return allAnswers.length > 0;
   }
 
-  renderButton(value, className, key) {
+  renderButton(value, className, key, datatestId) {
     const { disabledBtn, answerChoosed } = this.props;
     return (
       <button
+        data-testid={datatestId}
         type="button"
         value={value}
         disabled={disabledBtn}
@@ -62,14 +63,14 @@ class ShuffledButtons extends React.Component {
     if (!this.shouldShowAnswers()) return null;
     return (
       <div className="answers-buttons">
-        {allAnswers[questionIndex].map((button) => {
+        {allAnswers[questionIndex].map((button, index) => {
           if (button === questionsArr[questionIndex].correct_answer) {
             return (
-              this.renderButton(button, correctAnswerClass, button)
+              this.renderButton(button, correctAnswerClass, button, 'correct-answer')
             );
           }
           return (
-            this.renderButton(button, wrongAnswerClass, button)
+            this.renderButton(button, wrongAnswerClass, button, `wrong-answer-${index}`)
           );
         })}
       </div>
