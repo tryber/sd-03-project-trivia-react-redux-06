@@ -67,18 +67,19 @@ class LoginContainer extends React.Component {
   }
 
   renderJogar() {
-    // const { username, email } = this.state;
-    // let disabled = false;
-    // if (username === '' || email === '') {
-    //   disabled = true;
-    // }
+    const { username, email } = this.state;
+    let disabled = false;
+    if (username === '' || email === '') {
+      disabled = true;
+    }
+
     return (
       <div>
         <Link to="/game-screen">
           <button
             type="button"
             data-testid="btn-play"
-            // disabled={disabled}
+            disabled={disabled}
             onClick={this.startGame}
           >
             JOGAR!
