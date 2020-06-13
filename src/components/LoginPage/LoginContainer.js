@@ -57,7 +57,7 @@ class LoginContainer extends React.Component {
         <label htmlFor="email">E-mail do Gravatar:</label>
         <input
           plasceholder="Email Gravatar"
-          type="text"
+          type="email"
           data-testid="input-player-name"
           onChange={(e) => this.handleChange(e)}
           name="email"
