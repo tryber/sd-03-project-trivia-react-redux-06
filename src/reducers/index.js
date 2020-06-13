@@ -1,5 +1,7 @@
-// import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
+import questionsDataReducer from './questionsDataReducer';
+import gravatarReducer from './gravatarReducer';
 
-// const rootReducer = combineReducers({  });
+const rootReducer = combineReducers({ questionsDataReducer, gravatarReducer });
 
-// export default rootReducer;
+export default rootReducer;

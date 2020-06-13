@@ -16,7 +16,7 @@ Cypress.Commands.add("addPlayer", (name, score = 0, assertions = 0, gravatarEmai
             name,
             assertions,
             score,
-            gravatarEmail
+            gravatarEmail,
         }
     }))
 })
@@ -30,11 +30,11 @@ Cypress.Commands.add('setToken', () => {
         url: 'https://opentdb.com/api_token.php?command=request',
     })
         .then((resp) => {
-            console.log({resp})
-            window.localStorage.setItem('token', resp.body.token)
-        })
+            console.log({ resp });
+            window.localStorage.setItem('token', resp.body.token);
+        });
 
-})
+});
 //
 //
 // -- This is a child command --

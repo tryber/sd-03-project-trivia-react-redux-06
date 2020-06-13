@@ -1,0 +1,12 @@
+.correct-answer {
+  border: 3px solid rgb(6, 240, 15)
+}
+
+.wrong-answer {
+  border: 3px solid rgb(255, 0, 0)
+}
+
+.answers-buttons {
+  display: flex;
+  flex-direction: column;
+}
