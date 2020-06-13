@@ -54,7 +54,7 @@ NextButtonControl.propTypes = {
   setNextQuestion: PropTypes.func.isRequired,
   timerFunction: PropTypes.func.isRequired,
   wrongAnswerClass: PropTypes.string,
-  history: PropTypes.objectOf(PropTypes.object).isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 NextButtonControl.defaultProps = {

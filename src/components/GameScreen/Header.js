@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import GravatarIMGController from './GravatarIMGController';
 
 const Header = (props) => {
   const { score, username } = props;
   return (
     <header>
-      <img data-testid="header-profile-picture" src="" alt="profile" />
+      <GravatarIMGController />
       <span data-testid="header-player-name">{username}</span>
       <span data-testid="header-score">{score}</span>
     </header>

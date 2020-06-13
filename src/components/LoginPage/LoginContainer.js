@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CryptoJS from 'crypto-js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getApiQuestions } from '../../actions/apiQuestionsAction';
 import { playersNameAction } from '../../actions/playersNameAction';
+import { getApiGravatar } from '../../actions/gravatarAction';
 import apiTokenRequest from '../../service/apiTokenRequest';
 
 class LoginContainer extends React.Component {
@@ -21,7 +23,7 @@ class LoginContainer extends React.Component {
     super(props);
     this.state = {
       username: '',
-      // email: '',
+      email: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.startGame = this.startGame.bind(this);
@@ -34,10 +36,10 @@ class LoginContainer extends React.Component {
 
   async startGame() {
     await apiTokenRequest().then((reponse) => localStorage.setItem('token', reponse.token));
-    const { username } = this.state;
-    const { apiQuestionsDispatch, playersNamesDispatch } = this.props;
+    const { username, email } = this.state;
+    const { apiQuestionsDispatch, playersNamesDispatch, apiGravatarDispatch } = this.props;
     playersNamesDispatch(username);
-    getApiGravatar((MD5))
+    apiGravatarDispatch(CryptoJS.MD5(email).toString().toLowerCase());
     apiQuestionsDispatch(localStorage.getItem('token'));
   }
 
@@ -105,6 +107,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   apiQuestionsDispatch: (token) => dispatch(getApiQuestions(token)),
+  apiGravatarDispatch: (hash) => dispatch(getApiGravatar(hash)),
   playersNamesDispatch: (username) => dispatch(playersNameAction(username)),
 });
 
@@ -113,4 +116,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
 LoginContainer.propTypes = {
   apiQuestionsDispatch: PropTypes.func.isRequired,
   playersNamesDispatch: PropTypes.func.isRequired,
+  apiGravatarDispatch: PropTypes.func.isRequired,
 };

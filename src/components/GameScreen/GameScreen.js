@@ -7,7 +7,7 @@ import QuestionsInfos from './QuestionsInfos';
 class GameScreen extends React.Component {
   render() {
     const { questionsArr } = this.props;
-    if (!questionsArr) return <div>Loading...</div>;
+    if (questionsArr.length === 0) return <div>Loading...</div>;
     return (
       <div>
         <Header />
@@ -25,5 +25,9 @@ export default connect(mapStateToProps)(GameScreen);
 
 
 GameScreen.propTypes = {
-  questionsArr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  questionsArr: PropTypes.arrayOf(PropTypes.object),
+};
+
+GameScreen.defaultProps = {
+  questionsArr: [],
 };
