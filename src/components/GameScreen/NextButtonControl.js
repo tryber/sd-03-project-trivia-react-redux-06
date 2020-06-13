@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import { newQuestionAction } from '../../actions/newQuestionAction';
 
 class NextButtonControl extends React.Component {
@@ -34,7 +34,7 @@ class NextButtonControl extends React.Component {
       </div>
     );
   }
-};
+}
 
 const mapStateToProps = (state) => ({
   questionIndex: state.questionsDataReducer.index,
