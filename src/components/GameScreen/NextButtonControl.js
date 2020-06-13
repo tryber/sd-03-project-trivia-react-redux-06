@@ -14,7 +14,6 @@ class NextButtonControl extends React.Component {
     const {
       setNextQuestion, timerFunction, questionIndex, allAnswers, history,
     } = this.props;
-    console.log(this.props);
     if ((questionIndex + 1) === allAnswers.length) return history.push('/feedback');
     setNextQuestion();
     return timerFunction();
