@@ -37,7 +37,7 @@ class QuestionsInfos extends React.Component {
     }, 1000);
   }
 
-  savingInLocalStorage() {
+  playersInfosLocalStorage() {
     const { assertions, score, name } = this.props;
     const state = {
       name,
@@ -45,6 +45,23 @@ class QuestionsInfos extends React.Component {
       score,
     };
     localStorage.setItem('state', JSON.stringify(state));
+  }
+
+  rankingInfoLocalStorage() {
+    const { picture, score, name } = this.props;
+    const personObject = { name, score, picture };
+    if (localStorage.getItem('ranking')) {
+      const rankingArray = JSON.parse(localStorage.getItem('ranking'));
+      const newRankingArr = rankingArray.reduce((acc, e) => {
+        if (e.name !== name) acc.push(e);
+        return acc;
+      }, []);
+      newRankingArr.push(personObject);
+      return localStorage.setItem('ranking', JSON.stringify(newRankingArr));
+    }
+    const rankingArray = [];
+    rankingArray.push(personObject);
+    return localStorage.setItem('ranking', JSON.stringify(rankingArray));
   }
 
   async answerChoosed(event) {
@@ -59,7 +76,8 @@ class QuestionsInfos extends React.Component {
       assertions = 1;
     }
     await checkAnswer(points, assertions);
-    this.savingInLocalStorage();
+    this.playersInfosLocalStorage();
+    this.rankingInfoLocalStorage();
     return clearInterval(this.interval);
   }
 
@@ -111,10 +129,12 @@ QuestionsInfos.propTypes = {
   timerCount: PropTypes.func.isRequired,
   checkAnswer: PropTypes.func.isRequired,
   assertions: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  picture: PropTypes.string,
 };
 
 QuestionsInfos.defaultProps = {
   questionsArr: [],
+  picture: '',
 };
