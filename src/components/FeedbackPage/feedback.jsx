@@ -4,6 +4,22 @@ import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 
 export class Feedback extends Component {
+  static feedbackPos() {
+    return (
+      <div>
+        <h1 data-testid="feedback-text">Mandou bem!</h1>
+      </div>
+    );
+  }
+
+  static feedbackNeg() {
+    return (
+      <div>
+        <h1 data-testid="feedback-text">Podia ser melhor...</h1>
+      </div>
+    );
+  }
+
   constructor(props) {
     super(props);
 
@@ -14,22 +30,6 @@ export class Feedback extends Component {
       playerName: 'Eduardo',
       correctAnswers: 2,
     };
-  }
-
-  static feedbackPos() {
-    return (
-      <div>
-        <h1 data-testid='feedback-text'>Mandou bem!</h1>
-      </div>
-    );
-  }
-
-  static feedbackNeg() {
-    return (
-      <div>
-        <h1 data-testid='feedback-text'>Podia ser melhor...</h1>
-      </div>
-    );
   }
 
   renderScore() {
@@ -52,20 +52,22 @@ export class Feedback extends Component {
     );
   }
 
-  renderButtons() {
+  static renderButtons() {
     return (
       <div>
         <div>
-          {/* <Link to='/ranking'> */}
-            <button className='feedback-button-ranking'>VER RANKING</button>
-          {/* </Link> */}
+          <Link to="/ranking">
+            <button type="button" className="feedback-button-ranking">
+              VER RANKING
+            </button>
+          </Link>
         </div>
         <div>
-          {/* <Link to='/'> */}
-            <button className='feedback-button-playagain'>
+          <Link to="/">
+            <button type="button" className="feedback-button-playagain">
               JOGAR NOVAMENTE
             </button>
-          {/* </Link> */}
+          </Link>
         </div>
       </div>
     );
@@ -76,7 +78,7 @@ export class Feedback extends Component {
     return (
       <div className="header-container">
         <header className="feedback-header">
-          <div style={{ display: "flex" }}>
+          <div style={{ display: 'flex' }}>
             <img
               className="player-profile-img-header"
               alt="player-profile"
@@ -97,7 +99,7 @@ export class Feedback extends Component {
         </header>
         <div className="score-container">
           {this.renderFeedbackScreen()}
-          {this.renderButtons()}
+          {Feedback.renderButtons()}
         </div>
       </div>
     );

@@ -1,12 +1,35 @@
 .correct-answer {
-  border: 3px solid rgb(6, 240, 15)
+  border: 3px solid rgb(6, 240, 15);
+  color: green;
 }
 
 .wrong-answer {
-  border: 3px solid rgb(255, 0, 0)
+  border: 3px solid rgb(255, 0, 0);
+  color: red;
 }
 
 .answers-buttons {
   display: flex;
   flex-direction: column;
+}
+
+.button-display {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.button-display-text {
+  margin-right: 50px;
+  margin-left: 50px;
+  background-color: white;
+  border-radius: 100%;
+  color: blue;
+  width: 50px;
+  transform: scale(0.8);
+}
+
+.button-text {
+font-size: 25px;
+ line-height: 5px;
 }

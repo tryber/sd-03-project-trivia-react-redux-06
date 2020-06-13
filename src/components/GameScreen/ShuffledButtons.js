@@ -4,7 +4,10 @@ import './ShuffledButtons.css';
 import questions from '../dataTest';
 
 const arrWithAllButtons = (objQuestion) => {
-  const allAnswers = [objQuestion.correct_answer, ...objQuestion.incorrect_answers];
+  const allAnswers = [
+    objQuestion.correct_answer,
+    ...objQuestion.incorrect_answers,
+  ];
   return allAnswers;
 };
 
@@ -55,18 +58,25 @@ class ShuffledButtons extends React.Component {
     if (!this.shouldShowAnswers()) return null;
     return (
       <div className="answers-buttons">
-        {allAnswers[questionIndex].map((button) => {
+        {allAnswers[questionIndex].map((button, index) => {
           if (button === results[questionIndex].correct_answer) {
             return (
               <button
                 type="button"
                 value={button}
                 disabled={disabledBtn}
-                className={correctAnswerClass}
+                className={`${correctAnswerClass} question-button`}
                 onClick={answerChoosed}
                 key={button}
               >
-                {button}
+                <div className="button-display">
+                  <div className="button-display-text">
+                    <p className="button-text">{index + 1}</p>
+                  </div>
+                  <div>
+                    <p>{button}</p>
+                  </div>
+                </div>
               </button>
             );
           }
@@ -75,11 +85,18 @@ class ShuffledButtons extends React.Component {
               type="button"
               value={button}
               disabled={disabledBtn}
-              className={wrongAnswerClass}
+              className={`${wrongAnswerClass} question-button`}
               onClick={answerChoosed}
               key={button}
             >
-              {button}
+              <div className="button-display">
+                <div className="button-display-text">
+                  <p className="button-text">{index + 1}</p>
+                </div>
+                <div>
+                  <p>{button}</p>
+                </div>
+              </div>
             </button>
           );
         })}

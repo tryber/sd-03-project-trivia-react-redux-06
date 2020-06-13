@@ -1,0 +1,34 @@
+.game-screen-container {
+  display: flex;
+  width: 100%;
+}
+
+.game-screen-comp {
+  text-align: center;
+  width: 400px;
+}
+
+.silvio-img-container {
+  align-self: center;
+  height: fit-content;
+  margin-left: 300px;
+  width: fit-content;
+}
+
+.silvio-img {
+  border: 5px solid black;
+  border-radius: 100%;
+  background: rgb(42, 19, 80);
+  background: linear-gradient(
+    207deg,
+    rgba(42, 19, 80, 1) 5%,
+    rgba(98, 84, 129, 1) 12%,
+    rgba(86, 83, 146, 1) 18%,
+    rgba(9, 9, 121, 1) 32%,
+    rgba(100, 87, 144, 1) 50%,
+    rgba(9, 9, 121, 1) 69%,
+    rgba(103, 99, 152, 1) 86%,
+    rgba(106, 92, 136, 1) 92%,
+    rgba(42, 19, 80, 1) 98%
+  );
+}
