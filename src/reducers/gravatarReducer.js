@@ -1,7 +1,7 @@
 import {
   GET_GRAVATAR,
   GET_GRAVATAR_SUCCESS,
-  GET_GRAVATAR_FAILURE
+  GET_GRAVATAR_FAILURE,
 } from '../actions/gravatarAction';
 
 const INITIAL_STATE = {
