@@ -1,19 +1,31 @@
+import getApiGravatarRequest from '../service/apiGravatarRequest';
+
 export const GET_GRAVATAR = 'GET_GRAVATAR';
 export const GET_GRAVATAR_SUCCESS = 'GET_GRAVATAR_SUCCESS';
 export const GET_GRAVATAR_FAILURE = 'GET_GRAVATAR_FAILURE';
 
-export const getGravatarAction = (test) => (
-  { type: GET_GRAVATAR, loading: true, test }
-);
-export const getGravatarSuccess = (token, email) => (
-  { type: GET_GRAVATAR_SUCCESS, token, email }
-);
-export const getGravatarFailure = (error) => (
-  { type: GET_GRAVATAR_FAILURE, error }
-);
+const gravatarRequest = () => ({
+  type: GET_GRAVATAR,
+});
 
-export function catchEmail(token, email) {
+const getGravatarSuccess = (picture) => ({
+  type: GET_GRAVATAR_SUCCESS,
+  picture,
+});
+
+const getGravatarFailure = (error) => ({
+  type: GET_GRAVATAR_FAILURE,
+  error,
+});
+
+export function getApiGravatar(hash) {
   return (dispatch) => {
-    dispatch(getGravatarSuccess(token, email));
+    dispatch(gravatarRequest());
+
+    return getApiGravatarRequest(hash)
+      .then(
+        (picture) => dispatch(getGravatarSuccess(picture)),
+        (error) => dispatch(getGravatarFailure(error.message)),
+      );
   };
 }

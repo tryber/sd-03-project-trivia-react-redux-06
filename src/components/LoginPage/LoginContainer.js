@@ -37,6 +37,7 @@ class LoginContainer extends React.Component {
     const { username } = this.state;
     const { apiQuestionsDispatch, playersNamesDispatch } = this.props;
     playersNamesDispatch(username);
+    getApiGravatar((MD5))
     apiQuestionsDispatch(localStorage.getItem('token'));
   }
 
