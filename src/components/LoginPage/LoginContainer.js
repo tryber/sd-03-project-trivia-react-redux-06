@@ -12,7 +12,7 @@ class LoginContainer extends React.Component {
   static renderSettings() {
     return (
       <div>
-        <Link to=" ">
+        <Link to="/Settings" data-testid="btn-settings">
           Settings
         </Link>
       </div>
