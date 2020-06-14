@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './feedback.style.css';
 import { Link } from 'react-router-dom';
+import './feedback.style.css';
 // import { connect } from 'react-redux';
 
 export class Feedback extends Component {
