@@ -23,9 +23,8 @@ class NextButtonControl extends React.Component {
     const { wrongAnswerClass } = this.props;
     if (wrongAnswerClass === '') return null;
     return (
-      <div>
+      <div data-testid="btn-next">
         <button
-          data-testid="btn-next"
           type="button"
           onClick={this.nextPageControler}
         >

@@ -6,7 +6,7 @@ import GravatarIMGController from './GravatarIMGController';
 const Header = (props) => {
   const { score, username } = props;
   return (
-    <header>
+    <header data-testid="header-profile-picture">
       <GravatarIMGController />
       <span data-testid="header-player-name">{username}</span>
       <span data-testid="header-score">{score}</span>
