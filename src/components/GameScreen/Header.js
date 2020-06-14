@@ -7,7 +7,7 @@ const Header = (props) => {
   const { score, username } = props;
   return (
     <header>
-      <span data-testid="header-profile-picture"><GravatarIMGController /></span>
+      <GravatarIMGController />
       <span data-testid="header-player-name">{username}</span>
       <span data-testid="header-score">{score}</span>
     </header>
