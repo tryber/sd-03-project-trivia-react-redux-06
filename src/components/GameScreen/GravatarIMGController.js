@@ -6,10 +6,10 @@ const GravatarIMGController = (props) => {
   const { profilePicGravatar } = props;
   if (profilePicGravatar.url !== '') {
     return (
-      <img data-testid="header-profile-picture" src={profilePicGravatar.url} alt="profile" />
+      <img src={profilePicGravatar.url} alt="profile" />
     );
   }
-  return <img data-testid="header-profile-picture" src="http://www.gravatar.com/avatar" alt="Default Profile" />;
+  return <img src="http://www.gravatar.com/avatar" alt="Default Profile" />;
 };
 
 const mapStateToProps = (state) => ({
