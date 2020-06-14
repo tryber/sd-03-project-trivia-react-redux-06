@@ -9,15 +9,15 @@ import { getApiGravatar } from '../../actions/gravatarAction';
 import apiTokenRequest from '../../service/apiTokenRequest';
 
 class LoginContainer extends React.Component {
-  static renderSettings() {
-    return (
-      <div>
-        <Link to="/Settings" data-testid="btn-settings">
-          Settings
-        </Link>
-      </div>
-    );
-  }
+  // static renderSettings() {
+  //   return (
+  //     <div>
+  //       <Link to="/Settings" data-testid="btn-settings">
+  //         Settings
+  //       </Link>
+  //     </div>
+  //   );
+  // }
 
   constructor(props) {
     super(props);
@@ -94,7 +94,10 @@ class LoginContainer extends React.Component {
       <div>
         {this.renderLogin()}
         {this.renderJogar()}
-        {LoginContainer.renderSettings()}
+        {/* {LoginContainer.renderSettings()} */}
+        <Link to="/Settings" data-testid="btn-settings">
+          Settings
+        </Link>
       </div>
     );
   }
