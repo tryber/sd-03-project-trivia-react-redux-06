@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import './feedback.style.css';
-// import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 export class Feedback extends Component {
   static renderButtons() {
     return (
       <div>
         <div>
-          {/* <Link to="/ranking"> */}
-          <button type="button" className="feedback-button-ranking">VER RANKING</button>
-          {/* </Link> */}
+          <Link to="/ranking">
+            <button type="button" className="feedback-button-ranking">VER RANKING</button>
+          </Link>
         </div>
         <div>
-          {/* <Link to="/"> */}
-          <button type="button" className="feedback-button-playagain">
-            JOGAR NOVAMENTE
-          </button>
-          {/* </Link> */}
+          <Link to="/">
+            <button type="button" className="feedback-button-playagain">
+              JOGAR NOVAMENTE
+            </button>
+          </Link>
         </div>
       </div>
     );
@@ -37,18 +37,6 @@ export class Feedback extends Component {
         <h1 data-testid="feedback-text">Podia ser melhor...</h1>
       </div>
     );
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      playerScore: 50,
-      playerImage:
-        'https://www.gravatar.com/avatar/2d3bf5b67282f5f466e503d7022abcf3',
-      playerName: 'Eduardo',
-      correctAnswers: 2,
-    };
   }
 
   renderScore() {
@@ -72,7 +60,25 @@ export class Feedback extends Component {
   }
 
   render() {
-    const { playerImage, playerName, playerScore } = this.state;
+    const {
+      questionIndex,
+      name,
+      score,
+      assertions,
+      questionsArr,
+      timer,
+      wrongAnswerClass,
+      difficulty,
+    } = this.props;
+
+    console.log(questionIndex,
+      name,
+      score,
+      assertions,
+      questionsArr,
+      timer,
+      wrongAnswerClass,
+      difficulty);
     return (
       <div className="header-container">
         <header className="feedback-header">
@@ -80,33 +86,40 @@ export class Feedback extends Component {
             <img
               className="player-profile-img-header"
               alt="player-profile"
-              src={playerImage}
+              src=""
               data-testeid="header-profile-picture"
             />
             <p data-testid="header-player-name">
               Jogador:
-              <strong>{playerName}</strong>
+              <strong>{name}</strong>
             </p>
           </div>
           <div>
             <p data-testid="header-score">
               Pontos:
-              <strong>{playerScore}</strong>
+              <strong>{score}</strong>
             </p>
           </div>
         </header>
         <div className="score-container">
-          {this.renderFeedbackScreen()}
-          {Feedback.renderButtons()}
+          {/* {this.renderFeedbackScreen()}
+          {Feedback.renderButtons()} */}
         </div>
       </div>
     );
   }
 }
 
-// const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  questionIndex: state.questionsDataReducer.index,
+  name: state.playersInfoReducer.username,
+  score: state.questionsDataReducer.points,
+  assertions: state.questionsDataReducer.assertions,
+  questionsArr: state.apiQuestionsReducer.questions.results,
+  timer: state.questionsDataReducer.timerCount,
+  wrongAnswerClass: state.questionsDataReducer.wrongAnswerClass,
+  difficulty: state.questionsDataReducer.difficulty,
+});
 
-// const mapDispatchToProps = {};
-
-export default Feedback;
-// export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
+// export default Feedback;
+export default connect(mapStateToProps)(Feedback);

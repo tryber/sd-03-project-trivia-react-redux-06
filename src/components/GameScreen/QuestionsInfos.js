@@ -8,6 +8,7 @@ import { checkAnswerAction } from '../../actions/checkAnswerAction';
 import './QuestionsInfos.css';
 import ShuffledButtons from './ShuffledButtons';
 import NextButtonControl from './NextButtonControl';
+import logo from '../../show-do-milhão.png';
 
 class QuestionsInfos extends React.Component {
   constructor(props) {
@@ -85,17 +86,26 @@ class QuestionsInfos extends React.Component {
     const { questionIndex, timer, questionsArr } = this.props;
     const question = questionsArr[questionIndex];
     return (
-      <section>
-        <div className="questions-container">
-          <div className="questions-header">
-            <span data-testid="question-category">{question.category}</span>
-            <p data-testid="question-text">{question.question}</p>
+      <div className="questions-display">
+        <section>
+          <img src={logo} width="400px" alt="logo" />
+          <div className="questions-container">
+            <div className="questions-header">
+              <span data-testid="question-category">{question.category}</span>
+              <div>
+                <p data-testid="question-text">{`${question.question}`}</p>
+                <p>
+                  {`Tempo restante: ${timer}s`}
+                </p>
+              </div>
+            </div>
+            <div className="shuffled-buttons">
+              <ShuffledButtons answerChoosed={this.answerChoosed} />
+            </div>
+            <NextButtonControl timerFunction={this.timerFunction} />
           </div>
-          <ShuffledButtons answerChoosed={this.answerChoosed} />
-        </div>
-        <NextButtonControl timerFunction={this.timerFunction} />
-        <span>{timer}</span>
-      </section>
+        </section>
+      </div>
     );
   }
 }
