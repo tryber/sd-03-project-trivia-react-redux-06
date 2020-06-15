@@ -50,7 +50,7 @@ class LoginContainer extends React.Component {
         <input
           plasceholder="Email Gravatar"
           type="text"
-          data-testid="input-player-name"
+          data-testid="input-gravatar-email"
           onChange={(e) => this.handleChange(e)}
           name="email"
         />
@@ -60,7 +60,7 @@ class LoginContainer extends React.Component {
           onChange={(e) => this.handleChange(e)}
           name="username"
           type="name"
-          data-testid="input-gravatar-email"
+          data-testid="input-player-name"
         />
       </div>
     );
