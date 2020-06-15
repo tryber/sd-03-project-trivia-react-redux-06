@@ -10,7 +10,6 @@ class Ranking extends React.Component {
         alt="Gravatar"
       />
     );
-
     const getUser = JSON.parse(localStorage.getItem('ranking')) || [];
     const sortedUsers = getUser.sort((a, b) => {
       if (a.score > b.score) return -1;
