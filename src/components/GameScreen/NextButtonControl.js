@@ -19,6 +19,8 @@ class NextButtonControl extends React.Component {
     return timerFunction();
   }
 
+  // nextButton Working
+
   render() {
     const { wrongAnswerClass, timer } = this.props;
     if (wrongAnswerClass === '' && timer !== 0) return null;
