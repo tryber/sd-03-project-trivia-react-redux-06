@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 export class Feedback extends Component {
   static renderButtons() {
+    console.log(localStorage);
     return (
       <div>
         <div>
