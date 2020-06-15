@@ -6,7 +6,7 @@ const GravatarIMGController = (props) => {
   const { profilePicGravatar } = props;
   if (profilePicGravatar.url !== '') {
     return (
-      <img src={profilePicGravatar.url} alt="profile" />
+      <img src={profilePicGravatar.url} alt="profile" data-testid="header-profile-picture" />
     );
   }
   return <img src="http://www.gravatar.com/avatar" alt="Default Profile" data-testid="header-profile-picture" />;
