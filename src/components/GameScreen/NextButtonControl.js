@@ -20,8 +20,8 @@ class NextButtonControl extends React.Component {
   }
 
   render() {
-    const { wrongAnswerClass } = this.props;
-    if (wrongAnswerClass === '') return null;
+    const { wrongAnswerClass, timer } = this.props;
+    if (wrongAnswerClass === '' && timer !== 0) return null;
     return (
       <div data-testid="btn-next">
         <button
@@ -39,6 +39,7 @@ const mapStateToProps = (state) => ({
   questionIndex: state.questionsDataReducer.index,
   wrongAnswerClass: state.questionsDataReducer.wrongAnswerClass,
   allAnswers: state.allAnswersReducer.allAnswers,
+  timer: state.questionsDataReducer.timerCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -53,6 +54,7 @@ NextButtonControl.propTypes = {
   setNextQuestion: PropTypes.func.isRequired,
   timerFunction: PropTypes.func.isRequired,
   wrongAnswerClass: PropTypes.string,
+  timer: PropTypes.number.isRequired,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
