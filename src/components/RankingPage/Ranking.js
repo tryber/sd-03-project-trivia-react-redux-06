@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 class Ranking extends React.Component {
   static rankingList() {
     const gravatarPlayer = (picture) => (
