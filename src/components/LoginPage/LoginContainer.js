@@ -13,8 +13,8 @@ class LoginContainer extends React.Component {
   static renderSettings() {
     return (
       <div>
-        <Link to=" ">
-          <button type="button" className="play-button">CONFIGURAÇÕES</button>
+        <Link to="/Settings" data-testid="btn-settings">
+          Settings
         </Link>
       </div>
     );
@@ -38,49 +38,42 @@ class LoginContainer extends React.Component {
   async startGame() {
     await apiTokenRequest().then((reponse) => localStorage.setItem('token', reponse.token));
     const { username, email } = this.state;
-    const {
-      apiQuestionsDispatch,
-      playersNamesDispatch,
-      apiGravatarDispatch,
-    } = this.props;
-    playersNamesDispatch(username);
+    const { apiQuestionsDispatch, playersNamesDispatch, apiGravatarDispatch } = this.props;
+    playersNamesDispatch(username, email);
     apiGravatarDispatch(CryptoJS.MD5(email).toString().toLowerCase());
     apiQuestionsDispatch(localStorage.getItem('token'));
   }
 
   renderLogin() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <div>
-          <label className="login-label" htmlFor="email">
-            E-mail do Gravatar:
-          </label>
-          <input
-            className="login-input"
-            plasceholder="Email Gravatar"
-            type="email"
-            data-testid="input-player-name"
-            onChange={(e) => this.handleChange(e)}
-            name="email"
-          />
-        </div>
-        <div>
-          <label className="login-label" htmlFor="name">
-            Nome do Jogador:
-          </label>
-          <input
-            className="login-input"
-            onChange={(e) => this.handleChange(e)}
-            name="name"
-            type="text"
-            data-testid="input-gravatar-email"
-          />
-        </div>
+      <div>
+        <label htmlFor="email">E-mail do Gravatar:</label>
+        <input
+          plasceholder="Email Gravatar"
+          type="text"
+          data-testid="input-player-name"
+          onChange={(e) => this.handleChange(e)}
+          name="email"
+        />
+        <label htmlFor="username">Nome do Jogador:</label>
+        <input
+          placeholder="Nome"
+          onChange={(e) => this.handleChange(e)}
+          name="username"
+          type="name"
+          data-testid="input-gravatar-email"
+        />
       </div>
     );
   }
 
   renderJogar() {
+    const { username, email } = this.state;
+    let disabled = false;
+    if (username === '' || email === '') {
+      disabled = true;
+    }
+
     return (
       <div style={{ marginTop: '20px' }}>
         <Link to="/game-screen">
@@ -88,6 +81,7 @@ class LoginContainer extends React.Component {
             className="play-button"
             type="button"
             data-testid="btn-play"
+            disabled={disabled}
             onClick={this.startGame}
           >
             JOGAR!
@@ -117,7 +111,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   apiQuestionsDispatch: (token) => dispatch(getApiQuestions(token)),
   apiGravatarDispatch: (hash) => dispatch(getApiGravatar(hash)),
-  playersNamesDispatch: (username) => dispatch(playersNameAction(username)),
+  playersNamesDispatch: (username, email) => dispatch(playersNameAction(username, email)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

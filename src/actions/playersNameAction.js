@@ -1,6 +1,7 @@
-export const USERNAME = 'USERNAME';
+export const LOGIN = 'USERNAME';
 
-export const playersNameAction = (username) => ({
-  type: USERNAME,
+export const playersNameAction = (username, email) => ({
+  type: LOGIN,
   username,
+  email,
 });

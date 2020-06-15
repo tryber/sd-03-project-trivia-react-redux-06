@@ -19,6 +19,7 @@ class QuestionsInfos extends React.Component {
 
   componentDidMount() {
     this.timerFunction();
+    this.playersInfosLocalStorage();
   }
 
   componentWillUnmount() {
@@ -39,11 +40,16 @@ class QuestionsInfos extends React.Component {
   }
 
   playersInfosLocalStorage() {
-    const { assertions, score, name } = this.props;
+    const {
+      assertions, score, name, gravatarEmail,
+    } = this.props;
     const state = {
-      name,
-      assertions,
-      score,
+      player: {
+        name,
+        assertions,
+        score,
+        gravatarEmail,
+      },
     };
     localStorage.setItem('state', JSON.stringify(state));
   }
@@ -113,6 +119,8 @@ class QuestionsInfos extends React.Component {
 const mapStateToProps = (state) => ({
   questionIndex: state.questionsDataReducer.index,
   name: state.playersInfoReducer.username,
+  picture: state.gravatarReducer.picture.url,
+  gravatarEmail: state.playersInfoReducer.email,
   score: state.questionsDataReducer.points,
   assertions: state.questionsDataReducer.assertions,
   questionsArr: state.apiQuestionsReducer.questions.results,
@@ -141,10 +149,12 @@ QuestionsInfos.propTypes = {
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  gravatarEmail: PropTypes.string,
   picture: PropTypes.string,
 };
 
 QuestionsInfos.defaultProps = {
   questionsArr: [],
   picture: '',
+  gravatarEmail: '',
 };

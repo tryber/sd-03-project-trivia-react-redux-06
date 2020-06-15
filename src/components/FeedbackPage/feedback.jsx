@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import './feedback.style.css';
 import { Link } from 'react-router-dom';
+import './feedback.style.css';
 import { connect } from 'react-redux';
 
 export class Feedback extends Component {
@@ -9,12 +10,22 @@ export class Feedback extends Component {
       <div>
         <div>
           <Link to="/ranking">
-            <button type="button" className="feedback-button-ranking">VER RANKING</button>
+            <button
+              type="button"
+              className="feedback-button-ranking"
+              data-testid="btn-ranking"
+            >
+              VER RANKING
+            </button>
           </Link>
         </div>
         <div>
           <Link to="/">
-            <button type="button" className="feedback-button-playagain">
+            <button
+              type="button"
+              className="feedback-button-playagain"
+              data-testid="btn-play-again"
+            >
               JOGAR NOVAMENTE
             </button>
           </Link>
