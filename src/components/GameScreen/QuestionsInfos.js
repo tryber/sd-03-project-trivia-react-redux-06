@@ -18,6 +18,7 @@ class QuestionsInfos extends React.Component {
 
   componentDidMount() {
     this.timerFunction();
+    this.playersInfosLocalStorage();
   }
 
   componentWillUnmount() {
