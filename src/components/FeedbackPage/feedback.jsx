@@ -9,7 +9,7 @@ export class Feedback extends Component {
       <div>
         <div>
           <Link to="/ranking">
-            <button type="button" className="btn-ranking">VER RANKING</button>
+            <button type="button" className="feedback-button-ranking" data-testid="btn-ranking">VER RANKING</button>
           </Link>
         </div>
         <div>
@@ -46,7 +46,7 @@ export class Feedback extends Component {
       playerScore: 50,
       playerImage:
         'https://www.gravatar.com/avatar/2d3bf5b67282f5f466e503d7022abcf3',
-      name: '',
+      playerName: 'Eduardo',
       correctAnswers: 2,
     };
   }
@@ -72,7 +72,7 @@ export class Feedback extends Component {
   }
 
   render() {
-    const { playerImage, name, score } = this.state;
+    const { playerImage, playerName, playerScore } = this.state;
     return (
       <div className="header-container">
         <header className="feedback-header">
@@ -85,13 +85,13 @@ export class Feedback extends Component {
             />
             <p data-testid="header-player-name">
               Jogador:
-              <strong>{name}</strong>
+              <strong>{playerName}</strong>
             </p>
           </div>
           <div>
             <p data-testid="header-score">
               Pontos:
-              <strong>{score}</strong>
+              <strong>{playerScore}</strong>
             </p>
           </div>
         </header>
