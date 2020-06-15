@@ -46,7 +46,7 @@ export class Feedback extends Component {
       playerScore: 50,
       playerImage:
         'https://www.gravatar.com/avatar/2d3bf5b67282f5f466e503d7022abcf3',
-      playerName: 'Eduardo',
+      name: '',
       correctAnswers: 2,
     };
   }
