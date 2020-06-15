@@ -25,8 +25,8 @@ class NextButtonControl extends React.Component {
     return (
       <div>
         <button
-          data-testid="btn-next"
           type="button"
+          data-testid="btn-next"
           onClick={this.nextPageControler}
         >
           Próxima
