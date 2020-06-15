@@ -38,7 +38,7 @@ class LoginContainer extends React.Component {
     await apiTokenRequest().then((reponse) => localStorage.setItem('token', reponse.token));
     const { username, email } = this.state;
     const { apiQuestionsDispatch, playersNamesDispatch, apiGravatarDispatch } = this.props;
-    playersNamesDispatch(username);
+    playersNamesDispatch(username, email);
     apiGravatarDispatch(CryptoJS.MD5(email).toString().toLowerCase());
     apiQuestionsDispatch(localStorage.getItem('token'));
   }
@@ -109,7 +109,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   apiQuestionsDispatch: (token) => dispatch(getApiQuestions(token)),
   apiGravatarDispatch: (hash) => dispatch(getApiGravatar(hash)),
-  playersNamesDispatch: (username) => dispatch(playersNameAction(username)),
+  playersNamesDispatch: (username, email) => dispatch(playersNameAction(username, email)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
