@@ -4,12 +4,9 @@ import { Link } from 'react-router-dom';
 class Ranking extends React.Component {
   static rankingList() {
     const gravatarPlayer = (picture) => (
-      <img
-        data-testid="header-profile-picture"
-        src={picture}
-        alt="Gravatar"
-      />
+      <img src={picture} alt="Gravatar" />
     );
+
     const getUser = JSON.parse(localStorage.getItem('ranking')) || [];
     const sortedUsers = getUser.sort((a, b) => {
       if (a.score > b.score) return -1;
