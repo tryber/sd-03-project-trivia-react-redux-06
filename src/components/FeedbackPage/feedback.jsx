@@ -9,12 +9,12 @@ export class Feedback extends Component {
       <div>
         <div>
           <Link to="/ranking">
-            <button type="button" className="feedback-button-ranking">VER RANKING</button>
+            <button type="button" className="btn-ranking">VER RANKING</button>
           </Link>
         </div>
         <div>
           <Link to="/">
-            <button type="button" className="feedback-button-playagain">
+            <button type="button" className="feedback-button-playagain" data-testid="btn-play-again">
               JOGAR NOVAMENTE
             </button>
           </Link>
@@ -72,7 +72,7 @@ export class Feedback extends Component {
   }
 
   render() {
-    const { playerImage, playerName, playerScore } = this.state;
+    const { playerImage, name, score } = this.state;
     return (
       <div className="header-container">
         <header className="feedback-header">
@@ -85,13 +85,13 @@ export class Feedback extends Component {
             />
             <p data-testid="header-player-name">
               Jogador:
-              <strong>{playerName}</strong>
+              <strong>{name}</strong>
             </p>
           </div>
           <div>
             <p data-testid="header-score">
               Pontos:
-              <strong>{playerScore}</strong>
+              <strong>{score}</strong>
             </p>
           </div>
         </header>
