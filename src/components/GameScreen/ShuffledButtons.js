@@ -26,7 +26,6 @@ const shuffleAnswers = (array) => {
 };
 
 class ShuffledButtons extends React.Component {
-
   componentDidMount() {
     const { questionsArr, allAnswersDispatch } = this.props;
     const allAnswersArr = questionsArr

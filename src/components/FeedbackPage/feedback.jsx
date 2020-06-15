@@ -56,8 +56,8 @@ const feedbackNeg = () => (
 
 const renderScore = (playerAnswers, playerScore) => (
   <div>
-    <h2 data-testid="feedback-total-score">{`Questões certas: ${playerAnswers}`}</h2>
-    <h2 data-testid="feedback-total-question">{`Um total de ${playerScore} pontos!`}</h2>
+    <h2 data-testid="feedback-total-question">{`Questões certas: ${playerAnswers}`}</h2>
+    <h2 data-testid="feedback-total-score">{`Um total de ${playerScore} pontos!`}</h2>
   </div>
 );
 
@@ -72,10 +72,10 @@ const renderHeaderScore = (playerName, playerScore, playerPicture) => (
   <header className="feedback-header">
     <div style={{ display: 'flex' }}>
       <img
+        data-testid="header-profile-picture"
         className="player-profile-img-header"
         alt="player-profile"
         src={playerPicture}
-        data-testeid="header-profile-picture"
       />
       <p data-testid="header-player-name">
         Jogador:
@@ -94,6 +94,7 @@ const renderHeaderScore = (playerName, playerScore, playerPicture) => (
 class Feedback extends Component {
   render() {
     const {
+      // eslint-disable-next-line react/prop-types
       playerAnswers, playerName, playerPicture, playerScore,
     } = this.props;
     return (
@@ -110,7 +111,7 @@ class Feedback extends Component {
 
 const mapStateToProps = (state) => ({
   playerName: state.playersInfoReducer.username,
-  playerScore: state.questionsDataReducer.points,
+  playerScore: parseFloat(state.questionsDataReducer.points),
   playerAnswers: state.questionsDataReducer.assertions,
   playerPicture: state.gravatarReducer.picture.url,
 });
