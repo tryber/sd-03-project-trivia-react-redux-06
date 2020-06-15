@@ -1,15 +1,17 @@
-import { USERNAME } from '../actions/playersNameAction';
+import { LOGIN } from '../actions/playersNameAction';
 
 const INITIAL_STATE = {
   username: '',
+  email: '',
 };
 
 const playersInfoReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case USERNAME:
+    case LOGIN:
       return {
         ...state,
         username: action.username,
+        email: action.email,
       };
     default:
       return state;
