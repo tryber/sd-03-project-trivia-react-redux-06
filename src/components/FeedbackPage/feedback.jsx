@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './feedback.style.css';
 import { connect } from 'react-redux';
+import './feedback.style.css';
 
 // const playerName = JSON.parse(localStorage.getItem('state')).player.name;
 // // const playerEmail = JSON.parse(localStorage.getItem('state')).player.gravatarEmail;
