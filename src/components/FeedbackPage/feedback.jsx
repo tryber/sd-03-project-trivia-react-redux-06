@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './feedback.style.css';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-const playerName = JSON.parse(localStorage.getItem('state')).player.name;
-const playerScore = JSON.parse(localStorage.getItem('state')).player.score;
-const playerAnswers = JSON.parse(localStorage.getItem('state')).player.assertions;
-const ranking = JSON.parse(localStorage.getItem('ranking'));
-const state = JSON.parse(localStorage.getItem('state'));
+// const playerName = JSON.parse(localStorage.getItem('state')).player.name;
+// // const playerEmail = JSON.parse(localStorage.getItem('state')).player.gravatarEmail;
+// const playerScore = JSON.parse(localStorage.getItem('state')).player.score;
+// const playerAnswers = JSON.parse(localStorage.getItem('state')).player
+//   .assertions;
+// const ranking = JSON.parse(localStorage.getItem('ranking'));
 
-const playerGravatar = ranking.find((player) => player.name === playerName).picture;
+// // const playerGravatar = ranking.find((player) => player.name === playerName)
+// //   .picture;
 
-console.log(playerGravatar);
-
-console.log(ranking, state);
+// console.log(localStorage);
 
 const renderButtons = () => (
   <div>
@@ -54,47 +54,66 @@ const feedbackNeg = () => (
   </div>
 );
 
-const renderScore = () => (
+const renderScore = (playerAnswers, playerScore) => (
   <div>
-    <h2 data-testid="feedback-total-score">{`Você acertou ${playerAnswers} questão!`}</h2>
+    <h2 data-testid="feedback-total-score">{`Questões certas: ${playerAnswers}`}</h2>
     <h2 data-testid="feedback-total-question">{`Um total de ${playerScore} pontos!`}</h2>
   </div>
 );
 
-const renderFeedbackScreen = () => (
+const renderFeedbackScreen = (playerAnswers, playerScore) => (
   <div>
     {playerAnswers < 3 ? feedbackNeg() : feedbackPos()}
-    {renderScore()}
+    {renderScore(playerAnswers, playerScore)}
   </div>
 );
 
-const Feedback = () => (
-  <div className="header-container">
-    <header className="feedback-header">
-      <div style={{ display: 'flex' }}>
-        <img
-          className="player-profile-img-header"
-          alt="player-profile"
-          src={playerGravatar}
-          data-testeid="header-profile-picture"
-        />
-        <p data-testid="header-player-name">
-          Jogador:
-          <strong>{playerName}</strong>
-        </p>
-      </div>
-      <div>
-        <p data-testid="header-score">
-          Pontos:
-          <strong>{playerScore}</strong>
-        </p>
-      </div>
-    </header>
-    <div className="score-container">
-      {renderFeedbackScreen()}
-      {renderButtons()}
+const renderHeaderScore = (playerName, playerScore, playerPicture) => (
+  <header className="feedback-header">
+    <div style={{ display: 'flex' }}>
+      <img
+        className="player-profile-img-header"
+        alt="player-profile"
+        src={playerPicture}
+        data-testeid="header-profile-picture"
+      />
+      <p data-testid="header-player-name">
+        Jogador:
+        <strong>{playerName}</strong>
+      </p>
     </div>
-  </div>
+    <div>
+      <p data-testid="header-score">
+        Pontos:
+        <strong>{playerScore}</strong>
+      </p>
+    </div>
+  </header>
 );
 
-export default Feedback;
+class Feedback extends Component {
+  render() {
+    const {
+      playerAnswers, playerName, playerPicture, playerScore,
+    } = this.props;
+    return (
+      <div className="header-container">
+        {renderHeaderScore(playerName, playerScore, playerPicture)}
+        <div className="score-container">
+          {renderFeedbackScreen(playerAnswers, playerScore)}
+          {renderButtons()}
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  playerName: state.playersInfoReducer.username,
+  playerScore: state.questionsDataReducer.points,
+  playerAnswers: state.questionsDataReducer.assertions,
+  playerPicture: state.gravatarReducer.picture.url,
+});
+
+
+export default connect(mapStateToProps)(Feedback);
