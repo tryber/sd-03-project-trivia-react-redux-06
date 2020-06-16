@@ -56,8 +56,14 @@ const feedbackNeg = () => (
 
 const renderScore = (playerAnswers, playerScore) => (
   <div>
-    <h2 data-testid="feedback-total-question">{`Questões certas: ${playerAnswers}`}</h2>
-    <h2 data-testid="feedback-total-score">{`Um total de ${playerScore} pontos!`}</h2>
+    <h2>
+      Questões certas:
+      <span data-testid="feedback-total-question">{playerAnswers}</span>
+    </h2>
+    <h2>
+      Você fez um total de:
+      <span data-testid="feedback-total-score">{playerScore}</span>
+    </h2>
   </div>
 );
 
@@ -83,9 +89,9 @@ const renderHeaderScore = (playerName, playerScore, playerPicture) => (
       </p>
     </div>
     <div>
-      <p data-testid="header-score">
+      <p>
         Pontos:
-        <strong>{playerScore}</strong>
+        <strong data-testid="header-score">{playerScore}</strong>
       </p>
     </div>
   </header>

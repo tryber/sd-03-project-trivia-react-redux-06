@@ -8,6 +8,7 @@ import { checkAnswerAction } from '../../actions/checkAnswerAction';
 import './QuestionsInfos.css';
 import ShuffledButtons from './ShuffledButtons';
 import NextButtonControl from './NextButtonControl';
+import playersInfosLocalStorage from '../../service/functionsService';
 
 class QuestionsInfos extends React.Component {
   constructor(props) {
@@ -18,7 +19,6 @@ class QuestionsInfos extends React.Component {
 
   componentDidMount() {
     this.timerFunction();
-    this.playersInfosLocalStorage();
   }
 
   componentWillUnmount() {
@@ -36,21 +36,6 @@ class QuestionsInfos extends React.Component {
 
       return timerCount();
     }, 1000);
-  }
-
-  playersInfosLocalStorage() {
-    const {
-      assertions, score, name, gravatarEmail,
-    } = this.props;
-    const state = {
-      player: {
-        name,
-        assertions,
-        score,
-        gravatarEmail,
-      },
-    };
-    localStorage.setItem('state', JSON.stringify(state));
   }
 
   rankingInfoLocalStorage() {
@@ -71,18 +56,26 @@ class QuestionsInfos extends React.Component {
   }
 
   async answerChoosed(event) {
+    const dif = {
+      hard: 3,
+      medium: 2,
+      easy: 1,
+    };
     const {
-      timer, difficulty, checkAnswer, questionsArr, questionIndex,
+      timer, checkAnswer, questionsArr, questionIndex
     } = this.props;
     let points = 0;
-    let assertions = 0;
+    let assertion = 0;
     const questionAnswer = questionsArr[questionIndex];
     if (event.target.value === questionAnswer.correct_answer) {
-      points = 10 + (timer * difficulty);
-      assertions = 1;
+      points = 10 + (timer * dif[questionAnswer.difficulty]);
+      assertion = 1;
     }
-    await checkAnswer(points, assertions);
-    this.playersInfosLocalStorage();
+    await checkAnswer(points, assertion);
+    const {
+      assertions, score, name, gravatarEmail,
+    } = this.props;
+    playersInfosLocalStorage(assertions, score, name, gravatarEmail);
     this.rankingInfoLocalStorage();
     return clearInterval(this.interval);
   }
@@ -116,7 +109,6 @@ const mapStateToProps = (state) => ({
   questionsArr: state.apiQuestionsReducer.questions.results,
   timer: state.questionsDataReducer.timerCount,
   wrongAnswerClass: state.questionsDataReducer.wrongAnswerClass,
-  difficulty: state.questionsDataReducer.difficulty,
 });
 
 const mapDispatchToProps = (dispatch) => ({
