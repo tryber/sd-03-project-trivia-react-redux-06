@@ -9,18 +9,14 @@ class Ranking extends React.Component {
     );
 
     const getUser = JSON.parse(localStorage.getItem('ranking')) || [];
-    const sortedUsers = getUser.sort((a, b) => {
-      if (a.score > b.score) return -1;
-      if (a.score < b.score) return 1;
-      return 0;
-    });
+    const sortedUsers = getUser.sort((a, b) => b.score - a.score);
 
     return (
       <ul>
         {sortedUsers.map(({ name, score, picture }, indice) => {
           const index = indice + 1;
           return (
-            <li>
+            <li key={Math.random() * Math.PI}>
               {gravatarPlayer(picture)}
               <span data-testid={`player-name-${index}`}>
                 {`${name}`}
