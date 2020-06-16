@@ -7,8 +7,8 @@ import './LoginPage.style.css';
 const TriviaLogo = () => (
   <div className="login-page">
     <header className="login-page-header">
-      <img src={logo} alt="logo" />
       <div>
+        <img src={logo} alt="logo" style={{ marginTop: '150px' }} />
         <LoginContainer />
       </div>
     </header>

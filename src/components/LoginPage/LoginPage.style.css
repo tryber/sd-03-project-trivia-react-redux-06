@@ -1,12 +1,9 @@
 .login-page {
   text-align: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
 }
 
 .login-page-header {
-  font-size: calc(10px + 2vmin);
+  font-size: 25px;
   color: white;
 }
 
@@ -28,10 +25,6 @@
   border: 3px solid white;
 }
 
-.login-input {
-  background-color: blue;
-}
-
 .login-label {
   margin-right: 10px;
 }
@@ -44,24 +37,3 @@
   background-color: rgb(255, 255, 0);
   font-weight: 600;
 }
-
- /* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: shake infinite 4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  }
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes shake {
-  10%, 90% {
-    transform: scale(1.1);
-  }
-  
-  20%, 80% {
-    transform: scale(1);
-  }
-  
-} */
