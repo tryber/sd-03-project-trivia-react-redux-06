@@ -62,7 +62,7 @@ class QuestionsInfos extends React.Component {
       easy: 1,
     };
     const {
-      timer, checkAnswer, questionsArr, questionIndex
+      timer, checkAnswer, questionsArr, questionIndex,
     } = this.props;
     let points = 0;
     let assertion = 0;
@@ -122,7 +122,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(QuestionsInfos);
 
 QuestionsInfos.propTypes = {
   questionIndex: PropTypes.number.isRequired,
-  difficulty: PropTypes.number.isRequired,
   questionsArr: PropTypes.arrayOf(PropTypes.object),
   timer: PropTypes.number.isRequired,
   timeOut: PropTypes.func.isRequired,
