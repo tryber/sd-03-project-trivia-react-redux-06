@@ -1,122 +1,120 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './feedback.style.css';
-// import { connect } from 'react-redux';
 
-export class Feedback extends Component {
-  static renderButtons() {
-    return (
-      <div>
-        <div>
-          <Link to="/ranking">
-            <button
-              type="button"
-              className="feedback-button-ranking"
-              data-testid="btn-ranking"
-            >
-              VER RANKING
-            </button>
-          </Link>
-        </div>
-        <div>
-          <Link to="/">
-            <button
-              type="button"
-              className="feedback-button-playagain"
-              data-testid="btn-play-again"
-            >
-              JOGAR NOVAMENTE
-            </button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
+// const playerName = JSON.parse(localStorage.getItem('state')).player.name;
+// // const playerEmail = JSON.parse(localStorage.getItem('state')).player.gravatarEmail;
+// const playerScore = JSON.parse(localStorage.getItem('state')).player.score;
+// const playerAnswers = JSON.parse(localStorage.getItem('state')).player
+//   .assertions;
+// const ranking = JSON.parse(localStorage.getItem('ranking'));
 
-  static feedbackPos() {
-    return (
-      <div>
-        <h1 data-testid="feedback-text">Mandou bem!</h1>
-      </div>
-    );
-  }
+// // const playerGravatar = ranking.find((player) => player.name === playerName)
+// //   .picture;
 
-  static feedbackNeg() {
-    return (
-      <div>
-        <h1 data-testid="feedback-text">Podia ser melhor...</h1>
-      </div>
-    );
-  }
+// console.log(localStorage);
 
-  constructor(props) {
-    super(props);
+const renderButtons = () => (
+  <div>
+    <div>
+      <Link to="/ranking">
+        <button
+          type="button"
+          className="feedback-button-ranking"
+          data-testid="btn-ranking"
+        >
+          VER RANKING
+        </button>
+      </Link>
+    </div>
+    <div>
+      <Link to="/">
+        <button
+          type="button"
+          className="feedback-button-playagain"
+          data-testid="btn-play-again"
+        >
+          JOGAR NOVAMENTE
+        </button>
+      </Link>
+    </div>
+  </div>
+);
 
-    this.state = {
-      playerScore: 50,
-      playerImage:
-        'https://www.gravatar.com/avatar/2d3bf5b67282f5f466e503d7022abcf3',
-      playerName: 'Eduardo',
-      correctAnswers: 2,
-    };
-  }
+const feedbackPos = () => (
+  <div>
+    <h1 data-testid="feedback-text">Mandou bem!</h1>
+  </div>
+);
 
-  renderScore() {
-    const { correctAnswers, playerScore } = this.state;
-    return (
-      <div>
-        <h2>{`Você acertou ${correctAnswers} questões!`}</h2>
-        <h2>{`Um total de ${playerScore} pontos!`}</h2>
-      </div>
-    );
-  }
+const feedbackNeg = () => (
+  <div>
+    <h1 data-testid="feedback-text">Podia ser melhor...</h1>
+  </div>
+);
 
-  renderFeedbackScreen() {
-    const { correctAnswers } = this.state;
-    return (
-      <div>
-        {correctAnswers <= 3 ? Feedback.feedbackNeg() : Feedback.feedbackPos()}
-        {this.renderScore()}
-      </div>
-    );
-  }
+const renderScore = (playerAnswers, playerScore) => (
+  <div>
+    <h2 data-testid="feedback-total-question">{`Questões certas: ${playerAnswers}`}</h2>
+    <h2 data-testid="feedback-total-score">{`Um total de ${playerScore} pontos!`}</h2>
+  </div>
+);
 
+const renderFeedbackScreen = (playerAnswers, playerScore) => (
+  <div>
+    {playerAnswers < 3 ? feedbackNeg() : feedbackPos()}
+    {renderScore(playerAnswers, playerScore)}
+  </div>
+);
+
+const renderHeaderScore = (playerName, playerScore, playerPicture) => (
+  <header className="feedback-header">
+    <div style={{ display: 'flex' }}>
+      <img
+        data-testid="header-profile-picture"
+        className="player-profile-img-header"
+        alt="player-profile"
+        src={playerPicture}
+      />
+      <p data-testid="header-player-name">
+        Jogador:
+        <strong>{playerName}</strong>
+      </p>
+    </div>
+    <div>
+      <p data-testid="header-score">
+        Pontos:
+        <strong>{playerScore}</strong>
+      </p>
+    </div>
+  </header>
+);
+
+class Feedback extends Component {
   render() {
-    const { playerImage, playerName, playerScore } = this.state;
+    const {
+      // eslint-disable-next-line react/prop-types
+      playerAnswers, playerName, playerPicture, playerScore,
+    } = this.props;
     return (
       <div className="header-container">
-        <header className="feedback-header">
-          <div style={{ display: 'flex' }}>
-            <img
-              className="player-profile-img-header"
-              alt="player-profile"
-              src={playerImage}
-              data-testeid="header-profile-picture"
-            />
-            <p data-testid="header-player-name">
-              Jogador:
-              <strong>{playerName}</strong>
-            </p>
-          </div>
-          <div>
-            <p data-testid="header-score">
-              Pontos:
-              <strong>{playerScore}</strong>
-            </p>
-          </div>
-        </header>
+        {renderHeaderScore(playerName, playerScore, playerPicture)}
         <div className="score-container">
-          {this.renderFeedbackScreen()}
-          {Feedback.renderButtons()}
+          {renderFeedbackScreen(playerAnswers, playerScore)}
+          {renderButtons()}
         </div>
       </div>
     );
   }
 }
 
-// const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  playerName: state.playersInfoReducer.username,
+  playerScore: parseFloat(state.questionsDataReducer.points),
+  playerAnswers: state.questionsDataReducer.assertions,
+  playerPicture: state.gravatarReducer.picture.url,
+});
 
-// const mapDispatchToProps = {};
 
-export default Feedback;
-// export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
+export default connect(mapStateToProps)(Feedback);
