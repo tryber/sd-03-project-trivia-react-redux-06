@@ -9,12 +9,7 @@ class Ranking extends React.Component {
     );
 
     const getUser = JSON.parse(localStorage.getItem('ranking')) || [];
-    const sortedUsers = getUser.sort((a, b) => {
-      if (a.score > b.score) return -1;
-      if (a.score < b.score) return 1;
-      return 0;
-    });
-
+    const sortedUsers = getUser.sort((a, b) => b.score - a.score);
     return (
       <ul>
         {sortedUsers.map(({ name, score, picture }, indice) => {
@@ -41,7 +36,7 @@ class Ranking extends React.Component {
         <h1 data-testid="ranking-title">Ranking</h1>
         {Ranking.rankingList()}
         <Link to="/">
-          <button type="button" data-testid="btn-go-home">Voltar ao Inicio</button>
+          <button data-testid="btn-go-home" type="button">Voltar ao Inicio</button>
         </Link>
       </div>
     );
