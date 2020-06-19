@@ -47,11 +47,19 @@ const renderScore = (playerAnswers, playerScore) => (
   <div>
     <h2>
       Questões certas:
-      <span data-testid="feedback-total-question">{playerAnswers}</span>
+      {' '}
+      <span data-testid="feedback-total-question">
+        {' '}
+        {playerAnswers}
+      </span>
     </h2>
     <h2>
-      Você fez um total de:
-      <span data-testid="feedback-total-score">{playerScore}</span>
+      Pontuação final:
+      {' '}
+      <span data-testid="feedback-total-score">
+        {' '}
+        {playerScore}
+      </span>
     </h2>
   </div>
 );
@@ -90,7 +98,10 @@ class Feedback extends Component {
   render() {
     const {
       // eslint-disable-next-line react/prop-types
-      playerAnswers, playerName, playerPicture, playerScore,
+      playerAnswers,
+      playerName,
+      playerPicture,
+      playerScore,
     } = this.props;
     return (
       <div className="header-container">
@@ -110,6 +121,5 @@ const mapStateToProps = (state) => ({
   playerAnswers: state.questionsDataReducer.assertions,
   playerPicture: state.gravatarReducer.picture.url,
 });
-
 
 export default connect(mapStateToProps)(Feedback);

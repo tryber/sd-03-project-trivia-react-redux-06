@@ -17,7 +17,9 @@ class GameScreen extends React.Component {
           <Header />
         </div>
         <div className="silvio-img-container">
-          <img src={silvio} className="silvio-img" alt="silvio santos" />
+          <div>
+            <img src={silvio} className="silvio-img" alt="silvio santos" />
+          </div>
         </div>
       </div>
     );

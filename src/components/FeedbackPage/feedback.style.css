@@ -13,27 +13,38 @@
   flex-direction: row;
   justify-content: space-around;
   padding: 5px;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .feedback-button-playagain {
-  background-color: lightgreen;
+  background-color: rgb(255, 255, 0);
   border: none;
   margin: 5px;
   padding: 10px;
   width: 300px;
+  border-radius: 10px;
+  color: red;
+  font-weight: 600;
 }
 
 .feedback-button-ranking {
+  background-color: rgb(255, 255, 0);
   border: none;
   margin: 5px;
   padding: 10px;
   width: 300px;
+  border-radius: 10px;
+  color: red;
+  font-weight: 600;
 }
 
 .header-container {
   margin: auto;
   padding: 100px;
   width: 800px;
+  color: white;
 }
 
 .player-profile-img-header {
@@ -46,4 +57,21 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  background: rgb(42, 19, 80);
+  background: linear-gradient(
+    207deg,
+    rgba(42, 19, 80, 1) 5%,
+    rgba(98, 84, 129, 1) 12%,
+    rgba(86, 83, 146, 1) 18%,
+    rgba(9, 9, 121, 1) 32%,
+    rgba(100, 87, 144, 1) 50%,
+    rgba(9, 9, 121, 1) 69%,
+    rgba(103, 99, 152, 1) 86%,
+    rgba(106, 92, 136, 1) 92%,
+    rgba(42, 19, 80, 1) 98%
+  );
+  padding: 15px;
+  border: 3px solid white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }

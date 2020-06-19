@@ -1,29 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './Ranking.style.css';
 
 class Ranking extends React.Component {
   static rankingList() {
-    const gravatarPlayer = (picture) => (
-      <img src={picture} alt="Gravatar" />
-    );
+    const gravatarPlayer = (picture) => <img src={picture} alt="Gravatar" />;
 
     const getUser = JSON.parse(localStorage.getItem('ranking')) || [];
     const sortedUsers = getUser.sort((a, b) => b.score - a.score);
 
     return (
-      <ul>
+      <ul className="full-list">
         {sortedUsers.map(({ name, score, picture }, indice) => {
           const index = indice + 1;
           return (
-            <li key={Math.random() * Math.PI}>
+            <li className="list-items" key={Math.random() * Math.PI}>
               {gravatarPlayer(picture)}
-              <span data-testid={`player-name-${index}`}>
-                {`${name}`}
-              </span>
-              <span data-testid={`player-score-${index}`}>
-                {` ${score}`}
-              </span>
+              <p data-testid={`player-name-${index}`}>{`${name}`}</p>
+              <p data-testid={`player-score-${index}`}>{` ${score}`}</p>
             </li>
           );
         })}
@@ -34,11 +28,17 @@ class Ranking extends React.Component {
   render() {
     return (
       <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        {Ranking.rankingList()}
-        <Link to="/">
-          <button type="button" data-testid="btn-go-home">Voltar ao Inicio</button>
-        </Link>
+        <div>
+          <h1 className="title" data-testid="ranking-title">Ranking</h1>
+          {Ranking.rankingList()}
+        </div>
+        <div className="home-btn-container">
+          <Link to="/">
+            <button className="home-btn" type="button" data-testid="btn-go-home">
+              Voltar ao Inicio
+            </button>
+          </Link>
+        </div>
       </div>
     );
   }

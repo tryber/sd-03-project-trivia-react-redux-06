@@ -10,14 +10,10 @@ const Header = (props) => {
     <header className="header">
       <div style={{ display: 'flex' }}>
         <GravatarIMGController />
-        <p data-testid="header-player-name">
-          <strong>{username}</strong>
-        </p>
+        <p data-testid="header-player-name">{username}</p>
       </div>
       <div>
-        <p data-testid="header-score">
-          <strong>{score}</strong>
-        </p>
+        <p data-testid="header-score">{score}</p>
       </div>
     </header>
   );
@@ -26,7 +22,6 @@ const Header = (props) => {
 const mapStateToProps = (state) => ({
   score: state.questionsDataReducer.points,
   username: state.playersInfoReducer.username,
-  url: state.gravatarReducer.url,
 });
 
 export default connect(mapStateToProps)(Header);

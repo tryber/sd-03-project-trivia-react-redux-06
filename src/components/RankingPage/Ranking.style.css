@@ -1,0 +1,106 @@
+.full-list {
+  /* border: 3px solid white; */
+  border-radius: 15px;
+  margin: auto;
+  width: 800px;
+  height: 550px;
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  background: rgb(42, 19, 80);
+  background: linear-gradient(
+    207deg,
+    rgba(42, 19, 80, 1) 2%,
+    rgba(98, 84, 129, 1) 15%,
+    rgba(86, 83, 146, 1) 20%,
+    rgba(9, 9, 121, 1) 31%,
+    rgba(100, 87, 144, 1) 50%,
+    rgba(9, 9, 121, 1) 69%,
+    rgba(103, 99, 152, 1) 86%,
+    rgba(106, 92, 136, 1) 85%,
+    rgba(42, 19, 80, 1) 98%
+  );
+  box-shadow: -8px 10px 15px 0px rgba(0, 0, 0, 0.842);
+  border: 5px solid black;
+}
+
+.title {
+  color: yellow;
+  text-align: center;
+}
+
+/* width */
+.full-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.full-list::-webkit-scrollbar-track {
+  border-radius: 15px;
+}
+
+/* Handle */
+.full-list::-webkit-scrollbar-thumb {
+  background: rgb(58, 57, 57); 
+  border-radius: 15px;
+  padding: 5px;
+}
+
+/* Handle on hover */
+.full-list::-webkit-scrollbar-thumb:hover {
+  background: rgb(214, 209, 209); 
+}
+
+.list-items {
+  border: none;
+  list-style-type: none;
+  height: fit-content;
+  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: 'rgb(255,0,0)';
+  background: linear-gradient(
+    158deg,
+    rgba(126, 18, 18, 1) 15%,
+    rgba(205, 33, 33, 1) 35%,
+    rgba(134, 21, 21, 1) 50%,
+    rgba(205, 33, 33, 1) 65%,
+    rgba(126, 18, 18, 1) 85%
+  );
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: -8px 10px 15px 0px rgba(0, 0, 0, 0.842);
+}
+
+.list-items:last-child {
+  margin-bottom: 10px;
+}
+
+.list-items p {
+  font-weight: 900;
+  font-size: 20px;
+  color: yellow;
+  padding: 0 20px;
+  margin: 0;
+  align-self: center;
+}
+
+.list-items img {
+  border-radius: 50%;
+}
+
+.home-btn-container{
+  width: fit-content;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.home-btn {
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  color: red;
+  background-color: rgb(255, 255, 0);
+  font-weight: 600;
+}

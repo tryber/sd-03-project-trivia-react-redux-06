@@ -5,6 +5,9 @@
 .login-page-header {
   font-size: 25px;
   color: white;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .login-input {
@@ -22,7 +25,11 @@
     rgba(205, 33, 33, 1) 65%,
     rgba(126, 18, 18, 1) 85%
   );
-  border: 3px solid white;
+  border: 2px solid white;
+}
+
+.login-input:scope {
+  background: blue;
 }
 
 .login-label {

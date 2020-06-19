@@ -83,7 +83,6 @@ class LoginContainer extends React.Component {
           </label>
           <input
             className="login-input"
-            placeholder="Nome"
             onChange={(e) => this.handleChange(e)}
             name="username"
             type="name"

@@ -5,10 +5,7 @@ import { allAnswersAction } from '../../actions/allAnswersAction';
 import './ShuffledButtons.css';
 
 const arrWithAllButtons = (objQuestion) => {
-  const allAnswers = [
-    objQuestion.correct_answer,
-    ...objQuestion.incorrect_answers,
-  ];
+  const allAnswers = [objQuestion.correct_answer, ...objQuestion.incorrect_answers];
   return allAnswers;
 };
 
@@ -44,42 +41,54 @@ class ShuffledButtons extends React.Component {
   renderButton(value, className, key, datatestId, index) {
     const { disabledBtn, answerChoosed } = this.props;
     return (
-      <button
-        data-testid={datatestId}
-        type="button"
-        value={value}
-        disabled={disabledBtn}
-        className={`${className} question-button`}
-        onClick={answerChoosed}
-        key={key}
-      >
-        <div className="button-display">
-          <div className="button-display-text">
-            <p className="button-text">{index + 1}</p>
-          </div>
-          <div>
-            <p>{value}</p>
-          </div>
+      <div className="button-display question-button">
+        <div>
+          <p className="button-display-text">{index + 1}</p>
         </div>
-      </button>
+        <div>
+          <button
+            data-testid={datatestId}
+            type="button"
+            value={value}
+            disabled={disabledBtn}
+            className={`${className} button-style`}
+            onClick={answerChoosed}
+            key={key}
+          >
+            {value}
+          </button>
+        </div>
+      </div>
     );
   }
 
   render() {
     const {
-      questionsArr, questionIndex, wrongAnswerClass, correctAnswerClass, allAnswers,
+      questionsArr,
+      questionIndex,
+      wrongAnswerClass,
+      correctAnswerClass,
+      allAnswers,
     } = this.props;
     if (!this.shouldShowAnswers()) return null;
     return (
       <div className="answers-buttons">
         {allAnswers[questionIndex].map((button, index) => {
           if (button === questionsArr[questionIndex].correct_answer) {
-            return (
-              this.renderButton(button, correctAnswerClass, button, 'correct-answer', index)
+            return this.renderButton(
+              button,
+              correctAnswerClass,
+              button,
+              'correct-answer',
+              index,
             );
           }
-          return (
-            this.renderButton(button, wrongAnswerClass, button, `wrong-answer-${index}`, index)
+          return this.renderButton(
+            button,
+            wrongAnswerClass,
+            button,
+            `wrong-answer-${index}`,
+            index,
           );
         })}
       </div>
