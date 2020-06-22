@@ -1,8 +1,8 @@
 .full-list {
-  background: linear-gradient(
-    207deg, rgba(42, 19, 80, 1) 2%, rgba(98, 84, 129, 1) 15%, rgba(86, 83, 146, 1) 20%,
-    rgba(9, 9, 121, 1) 31%, rgba(100, 87, 144, 1) 50%, rgba(9, 9, 121, 1) 69%,   
-    rgba(103, 99, 152, 1) 86%, rgba(106, 92, 136, 1) 85%, rgba(42, 19, 80, 1) 98%);
+  background: linear-gradient(207deg, rgba(42, 19, 80, 1) 2%, rgba(98, 84, 129, 1)
+  15%, rgba(86, 83, 146, 1) 20%, rgba(9, 9, 121, 1) 31%, rgba(100, 87, 144, 1)
+  50%, rgba(9, 9, 121, 1) 69%, rgba(103, 99, 152, 1) 86%, rgba(106, 92, 136, 1)
+  85%, rgba(42, 19, 80, 1) 98%);
   border: 5px solid black;
   border-radius: 15px;
   box-shadow: -8px 10px 15px 0 rgba(0, 0, 0, 0.842);
@@ -42,9 +42,8 @@
 }
 
 .list-items {
-  background: linear-gradient(
-    158deg, rgba(126, 18, 18, 1) 15%, rgba(205, 33, 33, 1) 35%, rgba(134, 21, 21, 1) 50%,
-    rgba(205, 33, 33, 1) 65%, rgba(126, 18, 18, 1) 85%);
+  background: linear-gradient(158deg, rgba(126, 18, 18, 1) 15%, rgba(205, 33, 33, 1)
+  35%, rgba(134, 21, 21, 1) 50%, rgba(205, 33, 33, 1) 65%, rgba(126, 18, 18, 1) 85%);
   border: none;
   border-radius: 15px;
   box-shadow: -8px 10px 15px 0 rgba(0, 0, 0, 0.842);
