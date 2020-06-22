@@ -11,8 +11,7 @@
     rgba(106, 92, 136, 1) 85%, 
     rgba(42, 19, 80, 1) 98%
     );
-    border-radius: 10px;
-    border-bottom-right-radius: 0;
+    border-radius: 0 10px 0 0; 
     border-right: 2px solid white;
 }
 
@@ -33,9 +32,7 @@
   );
   border: 3px solid white;
   border-left: none;
-  border-radius: 10px;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
+  border-radius: 0 10px 10px 0;
   color: white;
   display: flex;
   flex-direction: column;
@@ -60,8 +57,8 @@
   border: 3px solid white;
   border-radius: 10px;
   color: white;
-  font-weight: 900;
   font-size: large;
+  font-weight: 900;
   height: 60px;
   margin-bottom: 5px;
   padding-left: 10px;

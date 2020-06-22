@@ -6,8 +6,12 @@ const GravatarIMGController = (props) => {
   const { profilePicGravatar } = props;
   if (profilePicGravatar.url !== '') {
     return (
-
-      <img className="player-profile-img-header" data-testid="header-profile-picture" src={profilePicGravatar.url} alt="profile" />
+      <img
+        className="player-profile-img-header"
+        data-testid="header-profile-picture"
+        src={profilePicGravatar.url}
+        alt="profile"
+      />
     );
   }
   return (
@@ -19,7 +23,6 @@ const GravatarIMGController = (props) => {
     />
   );
 };
-
 
 const mapStateToProps = (state) => ({
   profilePicGravatar: state.gravatarReducer.picture,

@@ -13,11 +13,11 @@
 }
 
 .silvio-img {
+  -moz-box-shadow: -18px 10px 21px 0 rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -18px 10px 21px 0 rgba(0, 0, 0, 0.75);
   background-image: url("../../backlights.jpg");
   background-position: center;
   background-size: 600px;
-  -webkit-box-shadow: -18px 10px 21px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -18px 10px 21px 0px rgba(0, 0, 0, 0.75);
   border-radius: 100%;
-  box-shadow: -18px 10px 21px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -18px 10px 21px 0 rgba(0, 0, 0, 0.75);
 }

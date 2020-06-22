@@ -14,7 +14,7 @@
   );
   border: 5px solid black;
   border-radius: 15px;
-  box-shadow: -8px 10px 15px 0px rgba(0, 0, 0, 0.842);
+  box-shadow: -8px 10px 15px 0 rgba(0, 0, 0, 0.842);
   height: 550px;
   margin: auto;
   overflow: auto;
@@ -40,14 +40,14 @@
 
 /* Handle */
 .full-list::-webkit-scrollbar-thumb {
-  background: rgb(58, 57, 57); 
+  background: rgb(58, 57, 57);
   border-radius: 15px;
   padding: 5px;
 }
 
 /* Handle on hover */
 .full-list::-webkit-scrollbar-thumb:hover {
-  background: rgb(214, 209, 209); 
+  background: rgb(214, 209, 209);
 }
 
 .list-items {
@@ -62,7 +62,7 @@
   );
   border: none;
   border-radius: 15px;
-  box-shadow: -8px 10px 15px 0px rgba(0, 0, 0, 0.842);
+  box-shadow: -8px 10px 15px 0 rgba(0, 0, 0, 0.842);
   display: flex;
   height: fit-content;
   justify-content: space-between;
@@ -89,7 +89,7 @@
   border-radius: 50%;
 }
 
-.home-btn-container{
+.home-btn-container {
   margin: auto;
   margin-top: 20px;
   width: fit-content;
