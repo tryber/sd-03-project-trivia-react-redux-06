@@ -1,12 +1,4 @@
 .full-list {
-  /* border: 3px solid white; */
-  border-radius: 15px;
-  margin: auto;
-  width: 800px;
-  height: 550px;
-  overflow: auto;
-  overflow-x: hidden;
-  padding: 20px;
   background: rgb(42, 19, 80);
   background: linear-gradient(
     207deg,
@@ -20,8 +12,15 @@
     rgba(106, 92, 136, 1) 85%,
     rgba(42, 19, 80, 1) 98%
   );
-  box-shadow: -8px 10px 15px 0px rgba(0, 0, 0, 0.842);
   border: 5px solid black;
+  border-radius: 15px;
+  box-shadow: -8px 10px 15px 0px rgba(0, 0, 0, 0.842);
+  height: 550px;
+  margin: auto;
+  overflow: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  width: 800px;
 }
 
 .title {
@@ -52,13 +51,6 @@
 }
 
 .list-items {
-  border: none;
-  list-style-type: none;
-  height: fit-content;
-  overflow: auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
   background: 'rgb(255,0,0)';
   background: linear-gradient(
     158deg,
@@ -68,9 +60,16 @@
     rgba(205, 33, 33, 1) 65%,
     rgba(126, 18, 18, 1) 85%
   );
+  border: none;
   border-radius: 15px;
-  margin-bottom: 25px;
   box-shadow: -8px 10px 15px 0px rgba(0, 0, 0, 0.842);
+  display: flex;
+  height: fit-content;
+  justify-content: space-between;
+  list-style-type: none;
+  margin-bottom: 25px;
+  overflow: auto;
+  padding: 10px;
 }
 
 .list-items:last-child {
@@ -78,12 +77,12 @@
 }
 
 .list-items p {
-  font-weight: 900;
-  font-size: 20px;
-  color: yellow;
-  padding: 0 20px;
-  margin: 0;
   align-self: center;
+  color: yellow;
+  font-size: 20px;
+  font-weight: 900;
+  margin: 0;
+  padding: 0 20px;
 }
 
 .list-items img {
@@ -91,16 +90,16 @@
 }
 
 .home-btn-container{
-  width: fit-content;
   margin: auto;
   margin-top: 20px;
+  width: fit-content;
 }
 
 .home-btn {
-  width: 200px;
-  height: 30px;
+  background-color: rgb(255, 255, 0);
   border-radius: 10px;
   color: red;
-  background-color: rgb(255, 255, 0);
   font-weight: 600;
+  height: 30px;
+  width: 200px;
 }

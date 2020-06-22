@@ -3,20 +3,13 @@
 }
 
 .login-page-header {
-  font-size: 25px;
   color: white;
   display: flex;
   flex-direction: column;
-
+  font-size: 25px;
 }
 
 .login-input {
-  width: 200px;
-  border-radius: 10px;
-  border: none;
-  height: 25px;
-  padding-left: 10px;
-  background: 'rgb(255,0,0)';
   background: linear-gradient(
     158deg,
     rgba(126, 18, 18, 1) 15%,
@@ -26,6 +19,10 @@
     rgba(126, 18, 18, 1) 85%
   );
   border: 2px solid white;
+  border-radius: 10px;
+  height: 25px;
+  padding-left: 10px;
+  width: 200px;
 }
 
 .login-input:scope {
@@ -37,10 +34,10 @@
 }
 
 .play-button {
-  width: 200px;
-  height: 25px;
+  background-color: rgb(255, 255, 0);
   border-radius: 10px;
   color: red;
-  background-color: rgb(255, 255, 0);
   font-weight: 600;
+  height: 25px;
+  width: 200px;
 }
