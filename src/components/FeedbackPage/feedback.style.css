@@ -47,17 +47,9 @@
 
 .score-container {
   background: linear-gradient(
-    207deg,
-     rgba(42, 19, 80, 1) 5%,
-     rgba(98, 84, 129, 1) 12%,
-     rgba(86, 83, 146, 1) 18%,
-     rgba(9, 9, 121, 1) 32%,
-     rgba(100, 87, 144, 1) 50%,
-     rgba(9, 9, 121, 1) 69%,
-     rgba(103, 99, 152, 1) 86%,
-     rgba(106, 92, 136, 1) 92%,
-     rgba(42, 19, 80, 1) 98%
-  );
+    207deg, rgba(42, 19, 80, 1) 5%, rgba(98, 84, 129, 1) 12%, rgba(86, 83, 146, 1) 18%,
+    rgba(9, 9, 121, 1) 32%, rgba(100, 87, 144, 1) 50%, rgba(9, 9, 121, 1) 69%,
+    rgba(103, 99, 152, 1) 86%, rgba(106, 92, 136, 1) 92%, rgba(42, 19, 80, 1) 98%);
   border: 3px solid white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
