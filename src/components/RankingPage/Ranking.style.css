@@ -1,5 +1,4 @@
 .full-list {
-  background: rgb(42, 19, 80);
   background: linear-gradient(
     207deg,
     rgba(42, 19, 80, 1) 2%,
@@ -51,7 +50,6 @@
 }
 
 .list-items {
-  background: 'rgb(255,0,0)';
   background: linear-gradient(
     158deg,
     rgba(126, 18, 18, 1) 15%,
@@ -96,7 +94,7 @@
 }
 
 .home-btn {
-  background-color: rgb(255, 255, 0);
+  background-color: yellow;
   border-radius: 10px;
   color: red;
   font-weight: 600;
