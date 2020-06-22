@@ -56,11 +56,7 @@ class QuestionsInfos extends React.Component {
   }
 
   async answerChoosed(event) {
-    const dif = {
-      hard: 3,
-      medium: 2,
-      easy: 1,
-    };
+    const dif = { hard: 3, medium: 2, easy: 1 };
     const {
       timer, checkAnswer, questionsArr, questionIndex,
     } = this.props;
