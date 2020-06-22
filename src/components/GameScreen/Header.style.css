@@ -1,0 +1,23 @@
+.header {
+  background: linear-gradient(158deg, rgba(126, 18, 18, 1) 15%, rgba(205, 33, 33, 1)
+  35%, rgba(134, 21, 21, 1) 50%, rgba(205, 33, 33, 1) 65%, rgba(126, 18, 18, 1) 85%);
+  border: 2px solid white;
+  border-left: 0;
+  border-radius: 0 0 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 20px 5px 10px;
+}
+
+.header-container {
+  margin: auto;
+  padding: 100px;
+  width: 800px;
+}
+
+.player-profile-img-header {
+  border-radius: 50%;
+  margin-right: 10px;
+  width: 50px;
+}
