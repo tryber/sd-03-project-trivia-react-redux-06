@@ -1,11 +1,7 @@
 .feedback-header {
   background: linear-gradient(
-    158deg rgba(126 ,18, 18, 1) 15% ,
-    rgba(205, 33, 33, 1) 35% ,
-    rgba(134, 21, 21, 1) 50% ,
-    rgba(205, 33, 33, 1) 65% ,
-    rgba(126, 18, 18, 1) 85%
-  );
+    158deg rgba(126,18, 18, 1) 15%, rgba(205, 33, 33, 1) 35%, rgba(134, 21, 21, 1) 50%,
+    rgba(205, 33, 33, 1) 65%, rgba(126, 18, 18, 1) 85%);
   border: 2px solid white;
   border-radius: 10px 10px 0 0;
   display: flex;
